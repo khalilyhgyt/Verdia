@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verdia — Votre conformité ESG, enfin automatique</title>
+<meta name="description" content="Verdia : le copilot IA qui transforme 6 semaines de reporting ESG en 6 heures. Bilan carbone, CSRD, VSEA — automatiques.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a0e12;
+  --ink2:#0f151c;
+  --paper:#eef4f0;
+  --emerald:#34f5a5;
+  --emerald-dim:rgba(52,245,165,.14);
+  --gold:#e8c776;
+  --muted:#8fa398;
+  --line:rgba(238,244,240,.09);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);color:var(--paper);
+  font-family:'Manrope',sans-serif;
+  overflow-x:hidden;
+  cursor:none;
+}
+@media (pointer:coarse){body{cursor:auto}#cursor,#cursorDot{display:none}}
+::selection{background:var(--emerald);color:var(--ink)}
+
+/* ---- Film grain ---- */
+.grain{
+  position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:9998;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 8s steps(10) infinite;
+}
+@keyframes grain{
+  0%,100%{transform:translate(0,0)}10%{transform:translate(-5%,-5%)}30%{transform:translate(3%,-4%)}
+  50%{transform:translate(-4%,3%)}70%{transform:translate(5%,5%)}90%{transform:translate(-3%,4%)}
+}
+
+/* ---- Cursor ---- */
+#cursorDot{position:fixed;width:6px;height:6px;background:var(--emerald);border-radius:50%;pointer-events:none;z-index:9999;mix-blend-mode:screen;transition:transform .15s}
+#cursor{position:fixed;width:34px;height:34px;border:1px solid rgba(52,245,165,.5);border-radius:50%;pointer-events:none;z-index:9999;transition:transform .25s ease,opacity .3s}
+
+/* ---- Nav ---- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px 5vw;transition:.4s;
+}
+nav.scrolled{background:rgba(10,14,18,.75);backdrop-filter:blur(14px);padding:14px 5vw;border-bottom:1px solid var(--line)}
+.logo{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--paper);letter-spacing:.02em;cursor:pointer}
+.logo b{color:var(--emerald);font-weight:400}
+.navlinks{display:flex;gap:34px;align-items:center}
+.navlinks a{color:var(--muted);text-decoration:none;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;transition:.3s}
+.navlinks a:hover{color:var(--emerald)}
+.btn{
+  border:1px solid var(--emerald);background:transparent;color:var(--emerald);
+  padding:10px 22px;font-family:'Manrope',sans-serif;font-size:.82rem;letter-spacing:.12em;
+  text-transform:uppercase;cursor:pointer;transition:.3s;
+}
+.btn:hover{background:var(--emerald);color:var(--ink)}
+.btn.solid{background:var(--emerald);color:var(--ink);font-weight:700}
+.btn.solid:hover{background:var(--gold);border-color:var(--gold)}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+.burger span{width:24px;height:1.5px;background:var(--paper);transition:.3s}
+
+/* ---- Hero ---- */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  position:relative;padding:0 7vw;overflow:hidden;
+}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;pointer-events:none}
+.orb1{width:640px;height:640px;background:radial-gradient(circle at 35% 35%,rgba(52,245,165,.55),transparent 65%);top:-18%;right:-8%;animation:float1 14s ease-in-out infinite}
+.orb2{width:460px;height:460px;background:radial-gradient(circle at 60% 40%,rgba(232,199,118,.28),transparent 65%);bottom:-14%;left:-6%;animation:float2 18s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-60px,50px) scale(1.12)}}
+@keyframes float2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(50px,-40px) scale(1.08)}}
+.hero-eyebrow{
+  font-size:.78rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:28px;display:flex;align-items:center;gap:14px;
+}
+.hero-eyebrow::before{content:'';width:44px;height:1px;background:var(--gold)}
+.hero h1{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-size:clamp(3rem,7.6vw,6.6rem);line-height:1.04;max-width:13ch;
+  letter-spacing:-.01em;
+}
+.hero h1 em{font-style:italic;color:var(--emerald)}
+.hero p.lead{margin-top:32px;max-width:46ch;color:var(--muted);font-size:1.08rem;line-height:1.75}
+.hero-cta{margin-top:44px;display:flex;gap:18px;flex-wrap:wrap}
+.scroll-hint{
+  position:absolute;bottom:36px;left:7vw;color:var(--muted);font-size:.7rem;
+  letter-spacing:.35em;text-transform:uppercase;display:flex;align-items:center;gap:14px;
+}
+.scroll-hint::after{content:'';width:1px;height:42px;background:linear-gradient(to bottom,var(--gold),transparent);animation:hint 2.2s ease infinite}
+@keyframes hint{0%{opacity:0;transform:scaleY(.2);transform-origin:top}45%{opacity:1;transform:scaleY(1)}100%{opacity:0;transform:scaleY(1)}}
+
+/* ---- Reveal ---- */
+.reveal{opacity:0;transform:translateY(46px);transition:opacity 1s cubic-bezier(.2,.7,.3,1),transform 1s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+section{padding:120px 7vw;position:relative}
+.tag{font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.tag::before{content:'';width:30px;height:1px;background:var(--gold)}
+h2{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2.1rem,4.4vw,3.8rem);line-height:1.12;letter-spacing:-.01em;max-width:20ch}
+h2 em{font-style:italic;color:var(--emerald)}
+.sub{color:var(--muted);line-height:1.8;margin-top:22px;max-width:52ch;font-size:1rem}
+
+/* ---- Problem stats ---- */
+.problem{background:var(--ink2)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);margin-top:64px;border:1px solid var(--line)}
+.stat{background:var(--ink2);padding:44px 34px;position:relative;overflow:hidden}
+.stat::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--emerald),transparent);transform:scaleX(0);transform-origin:left;transition:.7s}
+.stat:hover::before{transform:scaleX(1)}
+.stat .num{font-family:'Fraunces',serif;font-size:clamp(2.6rem,4.6vw,4rem);color:var(--emerald);font-weight:400}
+.stat .num sup{font-size:.45em;color:var(--gold)}
+.stat p{margin-top:12px;color:var(--muted);font-size:.88rem;line-height:1.6}
+
+/* ---- How it works ---- */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:26px;margin-top:70px}
+.step{
+  border:1px solid var(--line);padding:44px 32px;position:relative;background:rgba(255,255,255,.015);
+  transition:transform .5s cubic-bezier(.2,.7,.3,1),border-color .5s;
+}
+.step:hover{transform:translateY(-9px);border-color:rgba(52,245,165,.4)}
+.step .n{
+  font-family:'Fraunces',serif;font-style:italic;font-size:3.4rem;line-height:1;
+  color:transparent;-webkit-text-stroke:1px rgba(238,244,240,.28);margin-bottom:24px;
+}
+.step h3{font-family:'Fraunces',serif;font-weight:400;font-size:1.32rem;margin-bottom:14px}
+.step p{color:var(--muted);font-size:.9rem;line-height:1.75}
+.step .icon{position:absolute;top:32px;right:28px;font-size:1.4rem;opacity:.85}
+
+/* ---- Simulator ---- */
+.simu{
+  background:linear-gradient(160deg,var(--ink2),var(--ink) 65%);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.simu-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;margin-top:56px}
+.panel{border:1px solid var(--line);background:rgba(10,14,18,.6);padding:40px;backdrop-filter:blur(6px)}
+.field{margin-bottom:26px}
+.field label{display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.field input{
+  width:100%;background:rgba(255,255,255,.03);border:1px solid var(--line);color:var(--paper);
+  padding:14px 16px;font-family:'Manrope',sans-serif;font-size:1rem;outline:none;transition:.3s;
+}
+.field input:focus{border-color:var(--emerald)}
+.panel .btn{width:100%;margin-top:8px}
+.simu-result{
+  border:1px solid rgba(52,245,165,.3);padding:46px 40px;text-align:center;
+  background:radial-gradient(ellipse at 50% 0%,var(--emerald-dim),transparent 70%);
+  min-height:320px;display:flex;flex-direction:column;justify-content:center;transition:.5s;
+}
+.simu-result .co2{font-family:'Fraunces',serif;font-size:clamp(3.4rem,6vw,5.4rem);color:var(--emerald);line-height:1}
+.simu-result .co2 small{font-size:.32em;color:var(--paper);font-style:italic}
+.simu-result p{color:var(--muted);margin-top:20px;font-size:.92rem;line-height:1.7;max-width:38ch;margin-left:auto;margin-right:auto}
+.simu-result .verdict{margin-top:24px;font-family:'Fraunces',serif;font-style:italic;color:var(--gold);font-size:1.05rem}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:26px}
+.dots i{width:6px;height:6px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--emerald);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.3}}
+
+/* ---- Pricing ---- */
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;margin-top:70px}
+.plan{border:1px solid var(--line);padding:46px 36px;position:relative;transition:.5s}
+.plan:hover{transform:translateY(-8px)}
+.plan.featured{border-color:rgba(232,199,118,.55);background:linear-gradient(180deg,rgba(232,199,118,.06),transparent 45%)}
+.plan .badge{
+  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:var(--ink);font-size:.65rem;letter-spacing:.2em;
+  text-transform:uppercase;font-weight:700;padding:6px 16px;white-space:nowrap;
+}
+.plan h3{font-family:'Fraunces',serif;font-weight:400;font-size:1.5rem}
+.plan .price{font-family:'Fraunces',serif;font-size:2.7rem;margin:20px 0 6px}
+.plan .price small{font-size:.3em;color:var(--muted);font-family:'Manrope',sans-serif}
+.plan .per{color:var(--muted);font-size:.82rem;margin-bottom:28px}
+.plan ul{list-style:none;display:flex;flex-direction:column;gap:13px}
+.plan li{font-size:.88rem;color:var(--muted);display:flex;gap:12px;line-height:1.5}
+.plan li::before{content:'—';color:var(--emerald)}
+.plan .btn{width:100%;margin-top:34px}
+
+/* ---- Testimonials ---- */
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;margin-top:70px}
+.quote{border:1px solid var(--line);padding:38px 32px;background:rgba(255,255,255,.015);display:flex;flex-direction:column;gap:22px}
+.quote .q{font-family:'Fraunces',serif;font-style:italic;font-size:1.12rem;line-height:1.65;color:var(--paper)}
+.quote .who{color:var(--muted);font-size:.8rem;letter-spacing:.06em}
+.quote .who b{color:var(--emerald);font-weight:600}
+
+/* ---- Marquee ---- */
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;white-space:nowrap}
+.marquee-track{display:inline-block;animation:scroll 40s linear infinite}
+.marquee span{color:var(--muted);font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;margin:0 17px}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ---- Final CTA ---- */
+.final{text-align:center;padding:160px 7vw}
+.final h2{max-width:24ch;margin:0 auto}
+.final .btn{margin-top:46px;padding:16px 44px;font-size:.9rem}
+
+/* ---- Footer ---- */
+footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;color:var(--muted);font-size:.78rem;letter-spacing:.1em}
+
+/* ---- Chat (Verdia IA) ---- */
+#chatFab{
+  position:fixed;bottom:28px;right:28px;z-index:200;width:62px;height:62px;border-radius:50%;
+  background:var(--emerald);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 14px 40px rgba(52,245,165,.4);animation:breathe 3.4s ease infinite;transition:transform .3s;
+}
+@keyframes breathe{0%,100%{box-shadow:0 0 0 0 rgba(52,245,165,.35),0 14px 40px rgba(52,245,165,.4)}50%{box-shadow:0 0 0 16px rgba(52,245,165,0),0 14px 40px rgba(52,245,165,.4)}}
+#chatFab:hover{transform:scale(1.08)}
+#chatFab svg{width:26px;height:26px;stroke:var(--ink);fill:none;stroke-width:2}
+#chatBox{
+  position:fixed;bottom:104px;right:28px;z-index:200;width:min(390px,calc(100vw - 40px));
+  height:min(560px,70vh);background:var(--ink2);border:1px solid rgba(52,245,165,.3);
+  display:none;flex-direction:column;box-shadow:0 30px 80px rgba(0,0,0,.6);
+  opacity:0;transform:translateY(20px) scale(.97);transition:opacity .4s cubic-bezier(.2,.7,.3,1),transform .4s cubic-bezier(.2,.7,.3,1);
+}
+#chatBox.open{display:flex;opacity:1;transform:none}
+.chat-head{display:flex;align-items:center;gap:12px;padding:18px 20px;border-bottom:1px solid var(--line);background:rgba(52,245,165,.05)}
+.chat-head .avatar{
+  width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 32% 30%,var(--emerald),#0e9c62);
+  display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;color:var(--ink);font-size:1.05rem;
+}
+.chat-head h4{font-family:'Fraunces',serif;font-weight:400;font-size:1.02rem}
+.chat-head .status{font-size:.68rem;color:var(--emerald);letter-spacing:.08em;display:flex;align-items:center;gap:6px}
+.chat-head .status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--emerald);animation:pulse 1.6s infinite}
+#chatLog{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px}
+#chatLog::-webkit-scrollbar{width:4px}
+#chatLog::-webkit-scrollbar-thumb{background:var(--line)}
+.msg{max-width:86%;padding:13px 16px;font-size:.88rem;line-height:1.65;animation:msgIn .4s cubic-bezier(.2,.7,.3,1)}
+@keyframes msgIn{from{opacity:0;transform:translateY(10px)}}
+.msg.bot{align-self:flex-start;background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:14px 14px 14px 4px;color:#d9e5de;white-space:pre-line}
+.msg.user{align-self:flex-end;background:var(--emerald);color:var(--ink);border-radius:14px 14px 4px 14px;font-weight:500}
+.msg.typing span{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--muted);margin:0 2px;animation:pulse .9s infinite}
+.msg.typing span:nth-child(2){animation-delay:.15s}
+.msg.typing span:nth-child(3){animation-delay:.3s}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 20px 8px}
+.chip{
+  border:1px solid rgba(52,245,165,.35);background:transparent;color:var(--emerald);
+  font-size:.74rem;padding:7px 13px;border-radius:30px;cursor:pointer;font-family:'Manrope',sans-serif;transition:.25s;
+}
+.chip:hover{background:var(--emerald);color:var(--ink)}
+.chat-input{display:flex;border-top:1px solid var(--line)}
+.chat-input input{flex:1;background:transparent;border:none;outline:none;color:var(--paper);padding:17px 18px;font-family:'Manrope',sans-serif;font-size:.9rem}
+.chat-input button{background:none;border:none;cursor:pointer;padding:0 20px}
+.chat-input button svg{width:19px;height:19px;stroke:var(--emerald);fill:none;stroke-width:2;vertical-align:middle}
+
+/* ---- Responsive ---- */
+@media(max-width:900px){
+  .navlinks{display:none}
+  .burger{display:flex}
+  .navlinks.open{
+    display:flex;position:fixed;top:0;right:0;bottom:0;width:min(320px,80vw);
+    background:var(--ink2);flex-direction:column;justify-content:center;gap:34px;
+    padding:40px;border-left:1px solid var(--line);align-items:flex-start;z-index:150;
+  }
+  .simu-grid{grid-template-columns:1fr;gap:34px}
+}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div id="cursor"></div><div id="cursorDot"></div>
+
+<nav id="nav">
+  <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Verdia<b>.</b></div>
+  <div class="navlinks" id="navlinks">
+    <a href="#probleme">Le problème</a>
+    <a href="#solution">La solution</a>
+    <a href="#simulateur">Simulateur</a>
+    <a href="#tarifs">Tarifs</a>
+    <button class="btn solid" onclick="openChat()">Démo live</button>
+  </div>
+  <button class="burger" id="burger" aria-label="menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="hero-eyebrow reveal">Start-up ESG · France · 2026</div>
+  <h1 class="reveal" style="transition-delay:.1s">Six semaines de reporting ESG deviennent <em>six heures.</em></h1>
+  <p class="lead reveal" style="transition-delay:.2s">
+    Verdia est le copilot IA qui connecte votre comptabilité, calcule votre empreinte carbone
+    et génère vos rapports CSRD, VSEA et questionnaires clients — automatiquement, chaque année.
+  </p>
+  <div class="hero-cta reveal" style="transition-delay:.3s">
+    <button class="btn solid" onclick="openChat()">Demander à Verdia IA</button>
+    <a href="#simulateur" style="text-decoration:none"><button class="btn">Simuler mon bilan carbone</button></a>
+  </div>
+  <div class="scroll-hint">Défiler</div>
+</header>
+
+<!-- ============ PROBLÈME ============ -->
+<section class="problem" id="probleme">
+  <div class="tag reveal">Le problème</div>
+  <h2 class="reveal">La conformité ESG est devenue une <em>taxe invisible</em> sur les PME.</h2>
+  <p class="sub reveal">Depuis la directive CSRD, vos grands clients exigent vos données environnementales
+  et sociales. Chaque questionnaire, chaque rapport vous coûte des semaines — ou des milliers d'euros de conseil.</p>
+  <div class="stats">
+    <div class="stat reveal"><div class="num"><span class="count" data-to="10">0</span><sup>+</sup></div><p>questionnaires ESG différents reçus en moyenne par une PME sous-traitante, chacun avec son format propre.</p></div>
+    <div class="stat reveal" style="transition-delay:.1s"><div class="num"><span class="count" data-to="20">0</span>&nbsp;<sup>000 €</sup></div><p>coût moyen d'un bilan carbone et d'un rapport CSRD réalisés par un cabinet de conseil traditionnel.</p></div>
+    <div class="stat reveal" style="transition-delay:.2s"><div class="num"><span class="count" data-to="150">0</span>&nbsp;<sup>000</sup></div><p>PME françaises concernées par les exigences de reporting de leurs donneurs d'ordre.</p></div>
+    <div class="stat reveal" style="transition-delay:.3s"><div class="num"><span class="count" data-to="36">0</span><sup>%</sup></div><p>des appels d'offres intègrent désormais des critères ESG éliminatoires pour les fournisseurs.</p></div>
+  </div>
+</section>
+
+<!-- ============ SOLUTION ============ -->
+<section id="solution">
+  <div class="tag reveal">La solution</div>
+  <h2 class="reveal">Un copilot qui travaille <em>pendant</em> que vous dirigez votre entreprise.</h2>
+  <p class="sub reveal">Pas un tableur. Pas un consultant. Un moteur autonome : vos données entrent, vos rapports certifiables sortent.</p>
+  <div class="steps">
+    <div class="step reveal"><div class="icon">🔗</div><div class="n">01</div><h3>Connexion</h3><p>Verdia se branche sur votre logiciel de comptabilité (Sage, Cegid, QuickBooks, EBP, Indy) et vos factures d'énergie. Aucun changement d'habitude, aucune ressaisie.</p></div>
+    <div class="step reveal" style="transition-delay:.12s"><div class="icon">🧮</div><div class="n">02</div><h3>Calcul</h3><p>Notre moteur, construit sur les facteurs d'émission officiels de l'ADEME, calcule votre empreinte carbone, vos consommations, votre profil social — puis détecte les anomalies tout seul.</p></div>
+    <div class="step reveal" style="transition-delay:.24s"><div class="icon">📄</div><div class="n">03</div><h3>Rapport</h3><p>Rapport CSRD / VSEA prêt à présenter, réponses pré-remplies aux questionnaires de vos clients, plan d'action priorisé. Reconstruit automatiquement chaque année.</p></div>
+    <div class="step reveal" style="transition-delay:.36s"><div class="icon">🤖</div><div class="n">04</div><h3>Copilottage</h3><p>L'IA Verdia vous explique chaque indicateur, répond à vos questions et vous alerte avant les échéances. C'est elle que vous pouvez tester en bas à droite de cet écran.</p></div>
+  </div>
+</section>
+
+<!-- ============ SIMULATEUR ============ -->
+<section class="simu" id="simulateur">
+  <div class="tag reveal">Aperçu express</div>
+  <h2 class="reveal">Estimez votre empreinte en <em>trente secondes.</em></h2>
+  <p class="sub reveal">Version simplifiée de notre moteur. Verdia réalise le calcul complet à partir de vos données réelles, ligne comptable par ligne comptable.</p>
+  <div class="simu-grid">
+    <div class="panel reveal">
+      <div class="field">
+        <label>Effectif de l'entreprise</label>
+        <input type="number" id="fEffectif" value="35" min="1">
+      </div>
+      <div class="field">
+        <label>Électricité consommée (kWh / an)</label>
+        <input type="number" id="fElec" value="120000" min="0">
+      </div>
+      <div class="field">
+        <label>Déplacements professionnels (km / an)</label>
+        <input type="number" id="fKm" value="250000" min="0">
+      </div>
+      <button class="btn solid" onclick="calcSimu()">Calculer mon empreinte</button>
+    </div>
+    <div class="simu-result reveal" id="simuResult">
+      <div class="dots"><i></i><i></i><i></i></div>
+      <p>Le moteur Verdia attend vos données.<br>Lancez le calcul pour découvrir votre estimation carbone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TARIFS ============ -->
+<section id="tarifs">
+  <div class="tag reveal">Tarifs</div>
+  <h2 class="reveal">95&nbsp;% moins cher qu'un <em>cabinet de conseil.</em></h2>
+  <div class="plans">
+    <div class="plan reveal">
+      <h3>Essentiel</h3>
+      <div class="price">990&nbsp;€<small> HT</small></div>
+      <div class="per">par an</div>
+      <ul>
+        <li>Bilan carbone simplifié</li>
+        <li>Réponses aux questionnaires clients</li>
+        <li>Copilot IA Verdia inclus</li>
+        <li>Mises à jour annuelles</li>
+      </ul>
+      <button class="btn" onclick="openChat()">Commencer</button>
+    </div>
+    <div class="plan featured reveal" style="transition-delay:.12s">
+      <div class="badge">Le plus choisi</div>
+      <h3>Pro</h3>
+      <div class="price">1 990&nbsp;€<small> HT</small></div>
+      <div class="per">par an</div>
+      <ul>
+        <li>Rapport CSRD / VSEA complet</li>
+        <li>Connecteurs comptabilité & énergie</li>
+        <li>Plan d'action priorisé</li>
+        <li>Validation par expert ESG</li>
+        <li>Support prioritaire</li>
+      </ul>
+      <button class="btn solid" onclick="openChat()">Commencer</button>
+    </div>
+    <div class="plan reveal" style="transition-delay:.24s">
+      <h3>Premium</h3>
+      <div class="price">3 990&nbsp;€<small> HT</small></div>
+      <div class="per">par an</div>
+      <ul>
+        <li>Tout le plan Pro</li>
+        <li>Accompagnement expert-comptable certifié</li>
+        <li>Attestation de conformité annuelle</li>
+        <li>Comparaison sectorielle avancée</li>
+      </ul>
+      <button class="btn" onclick="openChat()">Commencer</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee"><div class="marquee-track" id="marquee"></div></div>
+
+<!-- ============ TÉMOIGNAGES ============ -->
+<section>
+  <div class="tag reveal">Ils nous font confiance</div>
+  <h2 class="reveal">Conçus avec <em>des PME,</em> pas contre elles.</h2>
+  <div class="quotes">
+    <div class="quote reveal"><div class="q">« Nous répondions avant au questionnaire ESG de notre plus gros client chaque année, sur Excel, en trois semaines. Verdia l'a pré-rempli en un après-midi. »</div><div class="who"><b>Sophie R.</b> — Dirigeante, industrie plastique (86 salariés)</div></div>
+    <div class="quote reveal" style="transition-delay:.12s"><div class="q">« Mon expert-comptable m'a proposé Verdia. J'ai d'abord douté — aujourd'hui, c'est mon argument numéro un sur les appels d'offres publics. »</div><div class="who"><b>Marc D.</b> — Fondateur, BTP Métallerie (54 salariés)</div></div>
+    <div class="quote reveal" style="transition-delay:.24s"><div class="q">« L'IA nous explique chaque chiffre en langage clair. Pour la première fois, je comprends mon propre bilan carbone. »</div><div class="who"><b>Aïcha L.</b> — DGA, cosmétique responsable (28 salariés)</div></div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="final">
+  <div class="tag reveal" style="justify-content:center">Prêt quand vous l'êtes</div>
+  <h2 class="reveal">Votre premier rapport ESG pourrait être fini <em>avant ce soir.</em></h2>
+  <button class="btn solid reveal" onclick="openChat()">Parler à Verdia maintenant →</button>
+</section>
+
+<footer>
+  <div>© 2026 Verdia SAS — Paris, France</div>
+  <div>bonjour@verdia.io · Données hébergées en UE · Conforme RGPD</div>
+</footer>
+
+<!-- ============ CHAT VERDIA IA ============ -->
+<button id="chatFab" onclick="toggleChat()" aria-label="Ouvrir Verdia IA">
+  <svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.9 9.9 0 0 1-2.5-.3L4 21l1.4-4a8.2 8.2 0 0 1-1.4-4.6 8.4 8.4 0 0 1 8.5-8.4 8.4 8.4 0 0 1 8.5 8.5z"/></svg>
+</button>
+
+<div id="chatBox">
+  <div class="chat-head">
+    <div class="avatar">V</div>
+    <div>
+      <h4>Verdia IA</h4>
+      <div class="status">En ligne — répond en direct</div>
+    </div>
+  </div>
+  <div id="chatLog"></div>
+  <div class="chips" id="chips"></div>
+  <div class="chat-input">
+    <input id="chatInput" placeholder="Posez votre question…" autocomplete="off">
+    <button onclick="sendMsg()" aria-label="envoyer"><svg viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+  </div>
+</div>
+
+<script>
+/* ================= CURSEUR ================= */
+const dot=document.getElementById('cursorDot'),ring=document.getElementById('cursor');
+let mx=0,my=0,rx=0,ry=0;
+addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.transform=`translate(${mx-3}px,${my-3}px)`});
+(function loop(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;ring.style.transform=`translate(${rx-17}px,${ry-17}px)`;requestAnimationFrame(loop)})();
+
+/* ================= NAV ================= */
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+document.getElementById('burger').onclick=()=>document.getElementById('navlinks').classList.toggle('open');
+document.querySelectorAll('.navlinks a').forEach(a=>a.onclick=()=>document.getElementById('navlinks').classList.remove('open'));
+
+/* ================= REVEAL (observation unique) ================= */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ================= COMPTEURS ================= */
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  cio.unobserve(e.target);
+  const el=e.target,to=+el.dataset.to;let t0=null;
+  const anim=t=>{if(!t0)t0=t;const p=Math.min((t-t0)/1600,1);
+    el.textContent=Math.floor(to*(1-Math.pow(1-p,3))).toLocaleString('fr-FR');
+    if(p<1)requestAnimationFrame(anim)};
+  requestAnimationFrame(anim);
+}),{threshold:.6});
+document.querySelectorAll('.count').forEach(el=>cio.observe(el));
+
+/* ================= MARQUEE (construction propre) ================= */
+(function(){
+  const items=['Industrie','Agroalimentaire','BTP','Cosmétique réglementée','Métallerie','Transport','Textile','Électronique'];
+  const unit=items.map(i=>`<span>${i}</span>`).join('<span>·</span>');
+  document.getElementById('marquee').innerHTML=unit+unit; // doublé pour boucle parfaite à -50%
+})();
+
+/* ================= SIMULATEUR ================= */
+function calcSimu(){
+  const eff=Math.max(+document.getElementById('fEffectif').value||0,0);
+  const elec=Math.max(+document.getElementById('fElec').value||0,0);
+  const km=Math.max(+document.getElementById('fKm').value||0,0);
+  const res=document.getElementById('simuResult');
+  res.innerHTML='<div class="dots"><i class="on"></i><i class="on" style="animation-delay:.2s"></i><i class="on" style="animation-delay:.4s"></i></div><p>Analyse des données par le moteur Verdia…</p>';
+  setTimeout(()=>{
+    // Facteurs d'émission simplifiés (ADEME) :
+    // électricité France ≈ 0.06 kgCO2e/kWh · voiture thermique ≈ 0.19 kgCO2e/km · poste salarié (hors énergie directe) ≈ 0.55 tCO2e/an
+    const tElec=elec*0.00006, tKm=km*0.00019, tEmp=eff*0.55;
+    const total=tElec+tKm+tEmp;
+    const per=eff>0?total/eff:0;
+    const verdict=per<4
+      ?'Empreinte maîtrisée — Verdia ciblera vos déplacements pour encore la réduire.'
+      :'Potentiel de réduction significatif détecté — un plan d\'action Verdia prioriserait vos déplacements.';
+    res.innerHTML=`
+      <div class="co2">${total.toFixed(1)} <small>t CO₂e / an</small></div>
+      <p>soit environ <b style="color:var(--paper)">${per.toFixed(1)} tonnes par salarié</b> — estimation express basée sur les facteurs d'émission ADEME (électricité, déplacements, poste professionnel).</p>
+      <div class="verdict">${verdict}</div>
+      <p style="font-size:.78rem;margin-top:16px;opacity:.75">Version simplifiée : Verdia analyse vos écritures comptables réelles pour un bilan complet couvrant les scopes 1, 2 et 3.</p>`;
+  },1400);
+}
+
+/* ================= VERDIA IA ================= */
+const chatBox=document.getElementById('chatBox'),chatLog=document.getElementById('chatLog'),
+      chatInput=document.getElementById('chatInput'),chipsEl=document.getElementById('chips');
+let chatInit=false;
+
+function toggleChat(){chatBox.classList.contains('open')?closeChat():openChat()}
+function openChat(){
+  chatBox.classList.add('open');
+  if(!chatInit)initializeChat();
+  setTimeout(()=>chatInput.focus(),350);
+}
+function closeChat(){chatBox.classList.remove('open')}
+
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+
+const KB=[
+  {re:/(bonjour|salut|hello|bonsoir|hey|coucou)/,
+   a:"Bonjour ! 👋 Je suis Verdia, l'IA qui automatise la conformité ESG des PME. Je peux vous parler de nos offres, de la CSRD, de votre bilan carbone, de la sécurité de vos données… Que souhaitez-vous savoir ?"},
+  {re:/(econo|gain|rentab|gagner| retour )/,
+   a:"L'économie se calcule vite :\n\n• Un rapport CSRD en cabinet de conseil : **10 000 à 20 000 €**\n• Le même rapport avec Verdia : **à partir de 990 €**\n• Votre temps : 6 semaines → 6 heures, soit **95 % de temps libéré**\n\nSans compter les appels d'offres que vous pouvez désormais remporter grâce à vos données ESG. 📈"},
+  {re:/(prix|tarif|combien|cout|co[ûu]t|abonnement|offre)/,
+   a:"Voici nos trois formules annuelles (HT) :\n\n• **Essentiel — 990 €** : bilan carbone simplifié + réponses aux questionnaires clients\n• **Pro — 1 990 €** (la plus choisie) : rapport CSRD/VSEA complet, connecteurs comptabilité, validation par expert ESG\n• **Premium — 3 990 €** : tout Pro + accompagnement par expert-comptable certifié et attestation de conformité\n\nÀ titre de comparaison : un cabinet de conseil facture le même travail 10 000 à 20 000 €. Souhaitez-vous une estimation pour votre entreprise ?"},
+  {re:/(csrd|directive|reglement|obligation|vsea)/,
+   a:"La **CSRD** (Corporate Sustainability Reporting Directive) est la directive européenne qui impose un reporting de durabilité. En 2026, ce sont surtout les **grands donneurs d'ordre** qui la subissent — et ils la répercutent sur leurs fournisseurs PME via des questionnaires ESG. Résultat : même sans être juridiquement soumise, une PME doit fournir ses données pour **conserver ses contrats**. C'est exactement le problème que Verdia résout."},
+  {re:/(carbone|co2|empreinte|bilan|emission)/,
+   a:"Notre moteur calcule votre empreinte carbone avec les **facteurs d'émission officiels de l'ADEME** (base empreinte). Concrètement : nous analysons vos écritures comptables, vos factures d'énergie et vos déplacements pour couvrir les scopes 1, 2 et 3.\n\n💡 Vous pouvez tester une **version simplifiée** de ce calcul dans le simulateur de cette page — cherchez la section « Aperçu express ». Sinon, je peux lancer une démo complète avec vous."},
+  {re:/(demo|demonstration|essai|teste?r|decouvrir)/,
+   a:"Avec plaisir ! Deux options :\n\n1. **Simulateur express** (30 secondes) : remontez à la section « Aperçu express » de cette page et entrez vos chiffres.\n2. **Démo personnalisée** (30 min) : je planifie un rendez-vous avec un membre de notre équipe qui connectera vos données en direct.\n\nLaissez-moi votre email et je m'occupe de tout. 🙂"},
+  {re:/(securite|rgpd|donnee|confiden|heberg)/,
+   a:"Excellente question — c'est un point que nos clients dirigeants vérifient en premier. Réponses claires :\n\n• Données **hébergées exclusivement en Union européenne**\n• **Chiffrement** au repos et en transit\n• Aucune donnée revendue ni utilisée pour entraîner des modèles tiers\n• **DPA** (accord de traitement) signé avec chaque client — conforme RGPD\n\nVous restez propriétaire de vos données, en toutes circonstances."},
+  {re:/(compta|sage|cegid|quickbook|ebp|indy|connexion|connect|integration|logiciel)/,
+   a:"Verdia se connecte à votre écosystème existant, sans aucune ressaisie :\n\n• Logiciels comptables : Sage, Cegid, QuickBooks, EBP, Indy\n• Banques : via agrégateurs sécurisés (type Bridge, Powens)\n• Énergie : upload simple de vos factures EDF ou Engie en PDF\n\nLa mise en place initiale prend **moins d'une heure**, et mes collègues humains vous accompagnent gratuitement pendant celle-ci."},
+  {re:/(expert.?comptable|partenaire|cabinet)/,
+   a:"Nos meilleurs ambassadeurs sont les **experts-comptables** : ils recommandent Verdia à leurs clients PME et perçoivent 20 % de commission annuelle sur chaque contrat. C'est un partenariat gagnant-gagnant : leur cabinet valorise son offre, et la PME obtient un tarif préférentiel. Vous êtes expert-comptable ? Je peux organiser un échange avec notre équipe partenariats."},
+  {re:/(temps|delai|long|rapide|heure|semaine)/,
+   a:"Voici les durées typiques constatées chez nos clients :\n\n• **Mise en place initiale** : moins d'une heure\n• **Premier rapport complet** : 6 heures ouvrées (contre 6 semaines en manuel)\n• **Mises à jour annuelles** : automatiques — vous ne faites que valider\n\nC'est 95 % de temps gagné par rapport à la méthode traditionnelle. 🚀"},
+  {re:/(concurrence|concurrent|differen|pourquoi vous|unique)/,
+   a:"Très bonne question — voici pourquoi Verdia est différent :\n\n• Les **grands éditeurs** (type SAP, Diligent) visent les grands groupes : trop chers et complexes pour une PME\n• Les **consultants** font le travail, mais à 10 000 € et à refaire chaque année\n• Les **petits outils** ne font qu'un fragment (bilan carbone seul, questionnaire seul)\n\nVerdia est le **seul flux complet automatisé** pensé pour les PME : de la comptabilité brute jusqu'au rapport certifiable. Et je suis là, incluse dans l'abonnement, pour tout vous expliquer."},
+  {re:/(qui etes.?vous|presente|verdia|start.?up|entreprise)/,
+   a:"Je suis **Verdia**, start-up française née en 2026 d'un constat simple : les PME paient le prix fort de la transition réglementaire européenne, sans en avoir les moyens. Notre mission est de rendre la conformité ESG **accessible, automatique et — osons le mot — agréable**.\n\nJe suis l'IA copilote intégrée à chaque offre : je réponds aux dirigeants 24h/24, j'explique chaque indicateur et je déclenche des alertes avant les échéances."},
+  {re:/(merci|super|parfait|genial|top|cool)/,
+   a:"Avec grand plaisir ! 🌿 N'hésitez pas si vous avez d'autres questions — ou si vous souhaitez lancer votre premier rapport. On dit toujours chez Verdia : votre conformité ESG pourrait être terminée avant ce soir."},
+  {re:/(appeler|tel|telephone|contact|rendez.?vous|rdv|humain)/,
+   a:"Bien sûr — vous parlez à un humain en moins de 24 h :\n\n📧 **bonjour@verdia.io**\n📞 Lun–ven, 9h–18h\n\nOu laissez-moi vos nom et email ici : je transmets immédiatement à l'équipe, qui vous recontactera. En attendant, je reste à votre disposition !"}
+];
+
+const FALLBACK="Intéressante question ! Je peux surtout vous renseigner sur : nos **tarifs**, la **CSRD**, le **bilan carbone**, la **sécurité des données**, nos **intégrations comptables**, les **délais**, l'**économie réalisée**, la **démo**, ou parler à un **humain**. Que souhaitez-vous explorer ?";
+
+/* Rendu markdown léger : **gras** */
+function md(text){
+  return text.replace(/&/g,'&amp;').replace(/</g,'&lt;')
+             .replace(/\*\*(.+?)\*\*/g,'<b style="color:var(--emerald)">$1</b>');
+}
+function addMsg(text,who){
+  const d=document.createElement('div');d.className=`msg ${who}`;
+  if(who==='bot')d.innerHTML=md(text); else d.textContent=text;
+  chatLog.appendChild(d);chatLog.scrollTop=chatLog.scrollHeight;
+}
+
+let busy=false;
+function reply(q){
+  const n=norm(q);let best=null;
+  for(const k of KB){if(k.re.test(n)){best=k;break}}
+  busy=true;
+  const t=document.createElement('div');t.className='msg bot typing';
+  t.innerHTML='<span></span><span></span><span></span>';
+  chatLog.appendChild(t);chatLog.scrollTop=chatLog.scrollHeight;
+  setTimeout(()=>{t.remove();addMsg(best?best.a:FALLBACK,'bot');busy=false},900+Math.random()*600);
+}
+function sendMsg(){
+  const v=chatInput.value.trim();if(!v||busy)return;
+  addMsg(v,'user');chatInput.value='';reply(v);
+}
+chatInput.addEventListener('keydown',e=>{if(e.key==='Enter')sendMsg()});
+
+function initializeChat(){
+  chatInit=true;
+  const welcome="Bonjour ! 👋 Je suis **Verdia**, l'IA copilote de votre conformité ESG.\n\nJe réponds à toutes vos questions sur vos obligations, notre solution, nos tarifs — et je peux même estimer votre empreinte carbone. Que puis-je faire pour vous ?";
+  setTimeout(()=>addMsg(welcome,'bot'),400);
+  ['Combien ça coûte ?','C\'est quoi la CSRD ?','Estime mon bilan carbone','Quelle économie ?','Parler à un humain'].forEach(label=>{
+    const c=document.createElement('button');c.className='chip';c.textContent=label;
+    c.onclick=()=>{if(busy)return;addMsg(label,'user');reply(label)};
+    chipsEl.appendChild(c);
+  });
+}
+</script>
+</body>
+</html>
