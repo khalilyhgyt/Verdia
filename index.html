@@ -21,76 +21,41 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  background:var(--ink);color:var(--paper);
-  font-family:'Manrope',sans-serif;
-  overflow-x:hidden;cursor:none;
-}
+body{background:var(--ink);color:var(--paper);font-family:'Manrope',sans-serif;overflow-x:hidden;cursor:none}
 @media (pointer:coarse){body{cursor:auto}#cursor,#cursorDot{display:none}}
 ::selection{background:var(--emerald);color:var(--ink)}
 
-/* ================= PRELOADER ================= */
-#loader{
-  position:fixed;inset:0;z-index:10000;background:var(--ink);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
-  transition:opacity .8s ease,visibility .8s;
-}
+/* ============ PRELOADER ============ */
+#loader{position:fixed;inset:0;z-index:10000;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;transition:opacity .8s ease,visibility .8s}
 #loader.done{opacity:0;visibility:hidden}
-#loader .ring{
-  width:74px;height:74px;border-radius:50%;
-  border:1px solid rgba(52,245,165,.15);border-top-color:var(--emerald);
-  animation:spin 1s linear infinite;
-}
+#loader .ring{width:74px;height:74px;border-radius:50%;border:1px solid rgba(52,245,165,.15);border-top-color:var(--emerald);animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 #loadPct{font-family:'Fraunces',serif;font-size:2.4rem;color:var(--emerald)}
 #loadTxt{font-size:.68rem;letter-spacing:.4em;text-transform:uppercase;color:var(--muted)}
 
-/* ================= 3D SCENE ================= */
+/* ============ 3D BACKGROUND ============ */
 #bg3d{position:fixed;inset:0;z-index:0;pointer-events:none}
 #bg3d canvas{display:block}
 main,nav,footer{position:relative;z-index:1}
 
-/* ================= GRAIN ================= */
-.grain{
-  position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:9998;opacity:.05;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation:grain 8s steps(10) infinite;
-}
-@keyframes grain{
-  0%,100%{transform:translate(0,0)}10%{transform:translate(-5%,-5%)}30%{transform:translate(3%,-4%)}
-  50%{transform:translate(-4%,3%)}70%{transform:translate(5%,5%)}90%{transform:translate(-3%,4%)}
-}
-
-/* ================= CURSEUR ================= */
+/* ============ GRAIN / CURSEUR / PROGRESS ============ */
+.grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:9998;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 8s steps(10) infinite}
+@keyframes grain{0%,100%{transform:translate(0,0)}10%{transform:translate(-5%,-5%)}30%{transform:translate(3%,-4%)}50%{transform:translate(-4%,3%)}70%{transform:translate(5%,5%)}90%{transform:translate(-3%,4%)}}
 #cursorDot{position:fixed;width:6px;height:6px;background:var(--emerald);border-radius:50%;pointer-events:none;z-index:9999;mix-blend-mode:screen;transition:transform .15s}
 #cursor{position:fixed;width:34px;height:34px;border:1px solid rgba(52,245,165,.5);border-radius:50%;pointer-events:none;z-index:9999;transition:width .3s,height .3s,border-color .3s}
 #cursor.hover{width:58px;height:58px;border-color:var(--gold)}
-
-/* ================= PROGRESS BAR ================= */
 #progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--emerald),var(--gold));z-index:9999;width:0%}
 
-/* ================= NAV ================= */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:22px 5vw;transition:.4s;
-}
+/* ============ NAV ============ */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:22px 5vw;transition:.4s}
 nav.scrolled{background:rgba(6,9,13,.75);backdrop-filter:blur(16px);padding:14px 5vw;border-bottom:1px solid var(--line)}
 .logo{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--paper);letter-spacing:.02em;cursor:pointer}
 .logo b{color:var(--emerald);font-weight:400}
 .navlinks{display:flex;gap:34px;align-items:center}
 .navlinks a{color:var(--muted);text-decoration:none;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;transition:.3s}
 .navlinks a:hover{color:var(--emerald)}
-.btn{
-  border:1px solid var(--emerald);background:transparent;color:var(--emerald);
-  padding:10px 22px;font-family:'Manrope',sans-serif;font-size:.82rem;letter-spacing:.12em;
-  text-transform:uppercase;cursor:pointer;transition:.3s;position:relative;overflow:hidden;
-}
-.btn::after{
-  content:'';position:absolute;top:50%;left:50%;width:0;height:0;
-  background:radial-gradient(circle,rgba(238,244,240,.25),transparent 70%);
-  transform:translate(-50%,-50%);transition:width .5s,height .5s;border-radius:50%;
-}
+.btn{border:1px solid var(--emerald);background:transparent;color:var(--emerald);padding:10px 22px;font-family:'Manrope',sans-serif;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:.3s;position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:radial-gradient(circle,rgba(238,244,240,.25),transparent 70%);transform:translate(-50%,-50%);transition:width .5s,height .5s;border-radius:50%}
 .btn:hover::after{width:300%;height:900%}
 .btn:hover{background:var(--emerald);color:var(--ink)}
 .btn.solid{background:var(--emerald);color:var(--ink);font-weight:700}
@@ -99,35 +64,21 @@ nav.scrolled{background:rgba(6,9,13,.75);backdrop-filter:blur(16px);padding:14px
 .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
 .burger span{width:24px;height:1.5px;background:var(--paper);transition:.3s}
 
-/* ================= HERO ================= */
-.hero{
-  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
-  position:relative;padding:0 7vw;overflow:hidden;
-}
-.hero-eyebrow{
-  font-size:.78rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);
-  margin-bottom:28px;display:flex;align-items:center;gap:14px;
-}
+/* ============ HERO ============ */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;padding:0 7vw;overflow:hidden}
+.hero-eyebrow{font-size:.78rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;gap:14px}
 .hero-eyebrow::before{content:'';width:44px;height:1px;background:var(--gold)}
-.hero h1{
-  font-family:'Fraunces',serif;font-weight:300;
-  font-size:clamp(3rem,7.6vw,6.6rem);line-height:1.04;max-width:13ch;
-  letter-spacing:-.01em;text-shadow:0 0 60px rgba(6,9,13,.9);
-}
+.hero h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(3rem,7.6vw,6.6rem);line-height:1.04;max-width:13ch;letter-spacing:-.01em;text-shadow:0 0 60px rgba(6,9,13,.9)}
 .hero h1 em{font-style:italic;color:var(--emerald)}
 .hero p.lead{margin-top:32px;max-width:46ch;color:var(--muted);font-size:1.08rem;line-height:1.75;text-shadow:0 2px 20px rgba(6,9,13,.9)}
 .hero-cta{margin-top:44px;display:flex;gap:18px;flex-wrap:wrap}
-.scroll-hint{
-  position:absolute;bottom:36px;left:7vw;color:var(--muted);font-size:.7rem;
-  letter-spacing:.35em;text-transform:uppercase;display:flex;align-items:center;gap:14px;z-index:2;
-}
+.scroll-hint{position:absolute;bottom:36px;left:7vw;color:var(--muted);font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;display:flex;align-items:center;gap:14px;z-index:2}
 .scroll-hint::after{content:'';width:1px;height:42px;background:linear-gradient(to bottom,var(--gold),transparent);animation:hint 2.2s ease infinite}
 @keyframes hint{0%{opacity:0;transform:scaleY(.2);transform-origin:top}45%{opacity:1;transform:scaleY(1)}100%{opacity:0;transform:scaleY(1)}}
 
-/* ================= REVEAL ================= */
+/* ============ REVEAL ============ */
 .reveal{opacity:0;transform:translateY(46px);transition:opacity 1s cubic-bezier(.2,.7,.3,1),transform 1s cubic-bezier(.2,.7,.3,1)}
 .reveal.in{opacity:1;transform:none}
-
 section{padding:120px 7vw;position:relative}
 .tag{font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px}
 .tag::before{content:'';width:30px;height:1px;background:var(--gold)}
@@ -135,7 +86,7 @@ h2{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2.1rem,4.4vw,3.8
 h2 em{font-style:italic;color:var(--emerald)}
 .sub{color:var(--muted);line-height:1.8;margin-top:22px;max-width:52ch;font-size:1rem}
 
-/* ================= STATS ================= */
+/* ============ STATS ============ */
 .problem{background:linear-gradient(180deg,transparent,var(--ink2) 20%)}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);margin-top:64px;border:1px solid var(--line)}
 .stat{background:var(--ink2);padding:44px 34px;position:relative;overflow:hidden}
@@ -145,45 +96,48 @@ h2 em{font-style:italic;color:var(--emerald)}
 .stat .num sup{font-size:.45em;color:var(--gold)}
 .stat p{margin-top:12px;color:var(--muted);font-size:.88rem;line-height:1.6}
 
-/* ================= TILT 3D (cartes) ================= */
+/* ============ TILT CARDS ============ */
 .tilt{transform-style:preserve-3d;transition:transform .2s ease-out;will-change:transform}
-.tilt .glare{
-  position:absolute;inset:0;pointer-events:none;border-radius:0;
-  background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(238,244,240,.08),transparent 55%);
-  opacity:0;transition:opacity .3s;
-}
+.tilt .glare{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(238,244,240,.08),transparent 55%);opacity:0;transition:opacity .3s}
 .tilt:hover .glare{opacity:1}
-.tilt .inner{transform:translateZ(30px)} /* profondeur 3D */
+.tilt .inner{transform:translateZ(30px)}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:26px;margin-top:70px}
-.step{
-  border:1px solid var(--line);padding:44px 32px;position:relative;
-  background:rgba(12,18,24,.72);backdrop-filter:blur(8px);
-}
-.step .n{
-  font-family:'Fraunces',serif;font-style:italic;font-size:3.4rem;line-height:1;
-  color:transparent;-webkit-text-stroke:1px rgba(238,244,240,.28);margin-bottom:24px;
-}
+.step{border:1px solid var(--line);padding:44px 32px;position:relative;background:rgba(12,18,24,.72);backdrop-filter:blur(8px)}
+.step .n{font-family:'Fraunces',serif;font-style:italic;font-size:3.4rem;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(238,244,240,.28);margin-bottom:24px}
 .step h3{font-family:'Fraunces',serif;font-weight:400;font-size:1.32rem;margin-bottom:14px}
 .step p{color:var(--muted);font-size:.9rem;line-height:1.75}
 .step .icon{position:absolute;top:32px;right:28px;font-size:1.4rem;opacity:.85}
 
-/* ================= SIMULATEUR ================= */
+/* ============ SALLE DES DONNÉES (3D interactive) ============ */
+.salle{background:linear-gradient(180deg,var(--ink),var(--ink2) 30%,var(--ink))}
+.salle-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:44px;align-items:center;margin-top:60px}
+#salleCanvas{height:480px;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 50%,rgba(52,245,165,.05),transparent 70%);position:relative;overflow:hidden}
+#salleCanvas canvas{display:block;cursor:pointer}
+#salleHintAbs{position:absolute;top:14px;left:16px;font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);pointer-events:none;opacity:.8}
+.salle-info{border:1px solid var(--line);background:rgba(12,18,24,.72);backdrop-filter:blur(10px);padding:38px 34px;min-height:420px;display:flex;flex-direction:column}
+.si-icon{font-size:2rem;margin-bottom:18px}
+.salle-info h3{font-family:'Fraunces',serif;font-weight:400;font-size:1.6rem;margin-bottom:6px;transition:color .3s}
+.salle-info .si-key{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+.salle-info p{color:var(--muted);line-height:1.8;font-size:.94rem;flex:1}
+.si-stat{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.si-stat .v{font-family:'Fraunces',serif;font-size:2rem;color:var(--emerald)}
+.si-stat .l{color:var(--muted);font-size:.78rem;margin-top:4px}
+.salle-info.flash{animation:siflash .5s ease}
+@keyframes siflash{0%{border-color:var(--emerald);box-shadow:0 0 40px rgba(52,245,165,.25)}100%{border-color:var(--line)}}
+.salle-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.salle-tab{border:1px solid var(--line);background:transparent;color:var(--muted);font-family:'Manrope',sans-serif;font-size:.74rem;padding:8px 14px;cursor:pointer;transition:.25s;letter-spacing:.05em}
+.salle-tab.on,.salle-tab:hover{border-color:var(--emerald);color:var(--emerald)}
+
+/* ============ SIMULATEUR ============ */
 .simu{background:linear-gradient(160deg,var(--ink2),var(--ink) 65%);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .simu-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;margin-top:56px}
 .panel{border:1px solid var(--line);background:rgba(6,9,13,.6);padding:40px;backdrop-filter:blur(10px)}
 .field{margin-bottom:26px}
 .field label{display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
-.field input{
-  width:100%;background:rgba(255,255,255,.03);border:1px solid var(--line);color:var(--paper);
-  padding:14px 16px;font-family:'Manrope',sans-serif;font-size:1rem;outline:none;transition:.3s;
-}
+.field input{width:100%;background:rgba(255,255,255,.03);border:1px solid var(--line);color:var(--paper);padding:14px 16px;font-family:'Manrope',sans-serif;font-size:1rem;outline:none;transition:.3s}
 .field input:focus{border-color:var(--emerald);box-shadow:0 0 24px rgba(52,245,165,.15)}
 .panel .btn{width:100%;margin-top:8px}
-.simu-result{
-  border:1px solid rgba(52,245,165,.3);padding:46px 40px;text-align:center;
-  background:radial-gradient(ellipse at 50% 0%,var(--emerald-dim),transparent 70%);
-  min-height:320px;display:flex;flex-direction:column;justify-content:center;
-}
+.simu-result{border:1px solid rgba(52,245,165,.3);padding:46px 40px;text-align:center;background:radial-gradient(ellipse at 50% 0%,var(--emerald-dim),transparent 70%);min-height:320px;display:flex;flex-direction:column;justify-content:center}
 .simu-result .co2{font-family:'Fraunces',serif;font-size:clamp(3.4rem,6vw,5.4rem);color:var(--emerald);line-height:1;text-shadow:0 0 40px rgba(52,245,165,.4)}
 .simu-result .co2 small{font-size:.32em;color:var(--paper);font-style:italic}
 .simu-result p{color:var(--muted);margin-top:20px;font-size:.92rem;line-height:1.7;max-width:38ch;margin-left:auto;margin-right:auto}
@@ -193,14 +147,10 @@ h2 em{font-style:italic;color:var(--emerald)}
 .dots i.on{background:var(--emerald);animation:pulse 1s infinite}
 @keyframes pulse{50%{opacity:.3}}
 
-/* ================= TARIFS ================= */
+/* ============ TARIFS ============ */
 .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;margin-top:70px}
 .plan{border:1px solid var(--line);padding:46px 36px;position:relative;background:rgba(12,18,24,.72);backdrop-filter:blur(8px)}
-.plan .badge{
-  position:absolute;top:-13px;left:50%;transform:translateZ(40px) translateX(-50%);
-  background:var(--gold);color:var(--ink);font-size:.65rem;letter-spacing:.2em;
-  text-transform:uppercase;font-weight:700;padding:6px 16px;white-space:nowrap;
-}
+.plan .badge{position:absolute;top:-13px;left:50%;transform:translateZ(40px) translateX(-50%) if(0){};background:var(--gold);color:var(--ink);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:6px 16px;white-space:nowrap;transform:translateX(-50%)}
 .plan h3{font-family:'Fraunces',serif;font-weight:400;font-size:1.5rem}
 .plan .price{font-family:'Fraunces',serif;font-size:2.7rem;margin:20px 0 6px}
 .plan .price small{font-size:.3em;color:var(--muted);font-family:'Manrope',sans-serif}
@@ -210,47 +160,30 @@ h2 em{font-style:italic;color:var(--emerald)}
 .plan li::before{content:'—';color:var(--emerald)}
 .plan .btn{width:100%;margin-top:34px}
 
-/* ================= TÉMOIGNAGES ================= */
+/* ============ TÉMOIGNAGES / MARQUEE / CTA / FOOTER ============ */
 .quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;margin-top:70px}
 .quote{border:1px solid var(--line);padding:38px 32px;background:rgba(12,18,24,.72);backdrop-filter:blur(8px);display:flex;flex-direction:column;gap:22px}
 .quote .q{font-family:'Fraunces',serif;font-style:italic;font-size:1.12rem;line-height:1.65;color:var(--paper)}
 .quote .who{color:var(--muted);font-size:.8rem;letter-spacing:.06em}
 .quote .who b{color:var(--emerald);font-weight:600}
-
-/* ================= MARQUEE ================= */
 .marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;white-space:nowrap}
 .marquee-track{display:inline-block;animation:scroll 40s linear infinite}
 .marquee span{color:var(--muted);font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;margin:0 17px}
 @keyframes scroll{to{transform:translateX(-50%)}}
-
-/* ================= CTA / FOOTER ================= */
 .final{text-align:center;padding:160px 7vw}
 .final h2{max-width:24ch;margin:0 auto}
 .final .btn{margin-top:46px;padding:16px 44px;font-size:.9rem}
 footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;color:var(--muted);font-size:.78rem;letter-spacing:.1em}
 
-/* ================= CHAT IA ================= */
-#chatFab{
-  position:fixed;bottom:28px;right:28px;z-index:200;width:62px;height:62px;border-radius:50%;
-  background:var(--emerald);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 14px 40px rgba(52,245,165,.4);animation:breathe 3.4s ease infinite;transition:transform .3s;
-}
+/* ============ CHAT IA ============ */
+#chatFab{position:fixed;bottom:28px;right:28px;z-index:200;width:62px;height:62px;border-radius:50%;background:var(--emerald);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 40px rgba(52,245,165,.4);animation:breathe 3.4s ease infinite;transition:transform .3s}
 @keyframes breathe{0%,100%{box-shadow:0 0 0 0 rgba(52,245,165,.35),0 14px 40px rgba(52,245,165,.4)}50%{box-shadow:0 0 0 16px rgba(52,245,165,0),0 14px 40px rgba(52,245,165,.4)}}
 #chatFab:hover{transform:scale(1.08)}
 #chatFab svg{width:26px;height:26px;stroke:var(--ink);fill:none;stroke-width:2}
-#chatBox{
-  position:fixed;bottom:104px;right:28px;z-index:200;width:min(390px,calc(100vw - 40px));
-  height:min(560px,70vh);background:rgba(12,18,24,.96);border:1px solid rgba(52,245,165,.3);
-  backdrop-filter:blur(20px);
-  display:none;flex-direction:column;box-shadow:0 30px 80px rgba(0,0,0,.6);
-  opacity:0;transform:translateY(20px) scale(.97);transition:opacity .4s cubic-bezier(.2,.7,.3,1),transform .4s cubic-bezier(.2,.7,.3,1);
-}
+#chatBox{position:fixed;bottom:104px;right:28px;z-index:200;width:min(390px,calc(100vw - 40px));height:min(560px,70vh);background:rgba(12,18,24,.96);border:1px solid rgba(52,245,165,.3);backdrop-filter:blur(20px);display:none;flex-direction:column;box-shadow:0 30px 80px rgba(0,0,0,.6);opacity:0;transform:translateY(20px) scale(.97);transition:opacity .4s cubic-bezier(.2,.7,.3,1),transform .4s cubic-bezier(.2,.7,.3,1)}
 #chatBox.open{display:flex;opacity:1;transform:none}
 .chat-head{display:flex;align-items:center;gap:12px;padding:18px 20px;border-bottom:1px solid var(--line);background:rgba(52,245,165,.05)}
-.chat-head .avatar{
-  width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 32% 30%,var(--emerald),#0e9c62);
-  display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;color:var(--ink);font-size:1.05rem;
-}
+.chat-head .avatar{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 32% 30%,var(--emerald),#0e9c62);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;color:var(--ink);font-size:1.05rem}
 .chat-head h4{font-family:'Fraunces',serif;font-weight:400;font-size:1.02rem}
 .chat-head .status{font-size:.68rem;color:var(--emerald);letter-spacing:.08em;display:flex;align-items:center;gap:6px}
 .chat-head .status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--emerald);animation:pulse 1.6s infinite}
@@ -272,16 +205,15 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
 .chat-input button{background:none;border:none;cursor:pointer;padding:0 20px}
 .chat-input button svg{width:19px;height:19px;stroke:var(--emerald);fill:none;stroke-width:2;vertical-align:middle}
 
-/* ================= RESPONSIVE ================= */
+/* ============ RESPONSIVE ============ */
 @media(max-width:900px){
   .navlinks{display:none}
   .burger{display:flex}
-  .navlinks.open{
-    display:flex;position:fixed;top:0;right:0;bottom:0;width:min(320px,80vw);
-    background:rgba(12,18,24,.97);flex-direction:column;justify-content:center;gap:34px;
-    padding:40px;border-left:1px solid var(--line);align-items:flex-start;z-index:150;backdrop-filter:blur(20px);
-  }
+  .navlinks.open{display:flex;position:fixed;top:0;right:0;bottom:0;width:min(320px,80vw);background:rgba(12,18,24,.97);flex-direction:column;justify-content:center;gap:34px;padding:40px;border-left:1px solid var(--line);align-items:flex-start;z-index:150;backdrop-filter:blur(20px)}
   .simu-grid{grid-template-columns:1fr;gap:34px}
+  .salle-grid{grid-template-columns:1fr;gap:26px}
+  #salleCanvas{height:360px}
+  .salle-info{min-height:auto}
 }
 </style>
 </head>
@@ -294,7 +226,6 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
   <div id="loadTxt">Initialisation du moteur Verdia</div>
 </div>
 
-<!-- SCÈNE 3D + EFFETS -->
 <div id="bg3d"></div>
 <div id="progress"></div>
 <div class="grain"></div>
@@ -305,7 +236,7 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
   <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Verdia<b>.</b></div>
   <div class="navlinks" id="navlinks">
     <a href="#probleme">Le problème</a>
-    <a href="#solution">La solution</a>
+    <a href="#salle">Salle des données</a>
     <a href="#simulateur">Simulateur</a>
     <a href="#tarifs">Tarifs</a>
     <button class="btn solid" onclick="openChat()">Démo live</button>
@@ -316,14 +247,14 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
 <!-- HERO -->
 <header class="hero">
   <div class="hero-eyebrow reveal">Start-up ESG · France · 2026</div>
-  <h1 class="reveal" style="transition-delay:.1s">Six semaines de reporting ESG deviennent <em>six heures.</em></h1>
+  <h1 class="reveal" style="transition-delay:.1s" id="heroTitle">Six semaines de reporting ESG deviennent <em>six heures.</em></h1>
   <p class="lead reveal" style="transition-delay:.2s">
     Verdia est le copilot IA qui connecte votre comptabilité, calcule votre empreinte carbone
     et génère vos rapports CSRD, VSEA et questionnaires clients — automatiquement, chaque année.
   </p>
   <div class="hero-cta reveal" style="transition-delay:.3s">
     <button class="btn solid magnetic" onclick="openChat()">Demander à Verdia IA</button>
-    <a href="#simulateur" style="text-decoration:none"><button class="btn magnetic">Simuler mon bilan carbone</button></a>
+    <a href="#salle" style="text-decoration:none"><button class="btn magnetic">Explorer la salle des données</button></a>
   </div>
   <div class="scroll-hint">Défiler</div>
 </header>
@@ -339,6 +270,20 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
     <div class="stat reveal" style="transition-delay:.1s"><div class="num"><span class="count" data-to="20">0</span>&nbsp;<sup>000 €</sup></div><p>coût moyen d'un bilan carbone et d'un rapport CSRD réalisés par un cabinet de conseil traditionnel.</p></div>
     <div class="stat reveal" style="transition-delay:.2s"><div class="num"><span class="count" data-to="150">0</span>&nbsp;<sup>000</sup></div><p>PME françaises concernées par les exigences de reporting de leurs donneurs d'ordre.</p></div>
     <div class="stat reveal" style="transition-delay:.3s"><div class="num"><span class="count" data-to="36">0</span><sup>%</sup></div><p>des appels d'offres intègrent désormais des critères ESG éliminatoires pour les fournisseurs.</p></div>
+  </div>
+</section>
+
+<!-- SALLE DES DONNÉES -->
+<section class="salle" id="salle">
+  <div class="tag reveal">La salle des données</div>
+  <h2 class="reveal">Explorez le <em>cœur</em> du moteur Verdia.</h2>
+  <p class="sub reveal">Cinq modules en orbite, un moteur central. Touchez un module — ou utilisez les boutons — pour découvrir ce que chacun fait de vos données.</p>
+  <div class="salle-grid">
+    <div class="reveal">
+      <div id="salleCanvas"><div id="salleHintAbs">Interaction · touchez un module</div></div>
+      <div class="salle-tabs" id="salleTabs"></div>
+    </div>
+    <div class="salle-info reveal" id="salleInfo"></div>
   </div>
 </section>
 
@@ -394,7 +339,6 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
   </div>
 </section>
 
-<!-- MARQUEE -->
 <div class="marquee"><div class="marquee-track" id="marquee"></div></div>
 
 <!-- TÉMOIGNAGES -->
@@ -408,7 +352,6 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
   </div>
 </section>
 
-<!-- CTA -->
 <section class="final">
   <div class="tag reveal" style="justify-content:center">Prêt quand vous l'êtes</div>
   <h2 class="reveal">Votre premier rapport ESG pourrait être fini <em>avant ce soir.</em></h2>
@@ -441,7 +384,13 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 /* ============================================================
-   SCÈNE 3D — Sphère de particules + champ d'étoiles
+   STOCKAGE DE L'HTML FINAL DU TITRE (avant décryptage)
+   ============================================================ */
+const heroTitle=document.getElementById('heroTitle');
+const heroFinalHTML=heroTitle.innerHTML;
+
+/* ============================================================
+   SCÈNE 3D DE FOND — sphère de particules + étoiles
    ============================================================ */
 let webglOK=false, scene, camera, renderer, sphere, stars=[];
 let targetRX=0, targetRY=0, curRX=0, curRY=0;
@@ -453,75 +402,53 @@ function init3D(){
     if(!renderer)throw 0;
   }catch(e){document.getElementById('bg3d').style.display='none';finishLoad();return;}
   webglOK=true;
-  const el=document.getElementById('bg3d');
   renderer.setPixelRatio(Math.min(devicePixelRatio,2));
   renderer.setSize(innerWidth,innerHeight);
-  el.appendChild(renderer.domElement);
+  document.getElementById('bg3d').appendChild(renderer.domElement);
   scene=new THREE.Scene();
   camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,100);
   camera.position.z=isMobile?30:22;
 
-  /* ---- Sphère de données ---- */
-  const N=isMobile?1400:2600, pts=[];
-  const spherePts=[];
+  const N=isMobile?1400:2600, pts=[], spherePts=[];
   for(let i=0;i<N;i++){
-    // répartition type fibonacci pour une sphère homogène
     const y=1-(i/(N-1))*2, r=Math.sqrt(1-y*y), th=i*Math.PI*(3-Math.sqrt(5));
     const x=Math.cos(th)*r, z=Math.sin(th)*r;
-    spherePts.push(x,y,z);
+    spherePts.push([x,y,z]);
     pts.push(x,y,z);
   }
   const geo=new THREE.BufferGeometry();
   geo.setAttribute('position',new THREE.Float32BufferAttribute(pts,3));
-  const mat=new THREE.PointsMaterial({
-    color:0x34f5a5,size:isMobile?.09:.07,
-    transparent:true,opacity:.9,
-    blending:THREE.AdditiveBlending,depthWrite:false
-  });
-  sphere=new THREE.Points(geo,mat);
-  sphere.position.set(isMobile?0:7,1,0); // décalée à droite sur desktop
+  sphere=new THREE.Points(geo,new THREE.PointsMaterial({color:0x34f5a5,size:isMobile?.09:.07,transparent:true,opacity:.9,blending:THREE.AdditiveBlending,depthWrite:false}));
+  sphere.position.set(isMobile?0:7,1,0);
   sphere.scale.setScalar(9);
   scene.add(sphere);
 
-  /* ---- Halo intérieur doré ---- */
-  const core=new THREE.Mesh(
-    new THREE.SphereGeometry(4.2,32,32),
-    new THREE.MeshBasicMaterial({color:0xe8c776,transparent:true,opacity:.06})
-  );
+  const core=new THREE.Mesh(new THREE.SphereGeometry(4.2,32,32),new THREE.MeshBasicMaterial({color:0xe8c776,transparent:true,opacity:.06}));
   sphere.add(core);
 
-  /* ---- Constellation : lignes entre particules proches ---- */
-  const li=[];
-  const L=isMobile?250:600;
+  const li=[], L=isMobile?250:600;
   for(let i=0;i<L;i++){
     const a=Math.floor(Math.random()*N), b=Math.floor(Math.random()*N);
-    li.push(...[spherePts[a][0]*9,spherePts[a][1]*9,spherePts[a][2]*9,
-              spherePts[b][0]*9,spherePts[b][1]*9,spherePts[b][2]*9]);
+    li.push(spherePts[a][0]*9,spherePts[a][1]*9,spherePts[a][2]*9,spherePts[b][0]*9,spherePts[b][1]*9,spherePts[b][2]*9);
   }
   const lgeo=new THREE.BufferGeometry();
   lgeo.setAttribute('position',new THREE.Float32BufferAttribute(li,3));
-  const lmat=new THREE.LineBasicMaterial({color:0x34f5a5,transparent:true,opacity:.05});
-  sphere.add(new THREE.LineSegments(lgeo,lmat));
+  sphere.add(new THREE.LineSegments(lgeo,new THREE.LineBasicMaterial({color:0x34f5a5,transparent:true,opacity:.05})));
 
-  /* ---- Champ d'étoiles (profondeur) ---- */
   const sn=isMobile?300:700, sp=[];
   for(let i=0;i<sn;i++)sp.push((Math.random()-.5)*90,(Math.random()-.5)*70,-Math.random()*60-8);
   const sgeo=new THREE.BufferGeometry();
   sgeo.setAttribute('position',new THREE.Float32BufferAttribute(sp,3));
-  const smat=new THREE.PointsMaterial({color:0xeef4f0,size:.05,transparent:true,opacity:.55});
-  stars.push(new THREE.Points(sgeo,smat));
+  stars.push(new THREE.Points(sgeo,new THREE.PointsMaterial({color:0xeef4f0,size:.05,transparent:true,opacity:.55})));
   scene.add(stars[0]);
 
   addEventListener('resize',()=>{
     camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();
     renderer.setSize(innerWidth,innerHeight);
   });
-
   animate();
   finishLoad();
 }
-
-/* interaction doigt / souris */
 addEventListener('mousemove',e=>{
   targetRY=(e.clientX/innerWidth-.5)*.7;
   targetRX=(e.clientY/innerHeight-.5)*.5;
@@ -531,17 +458,14 @@ addEventListener('touchmove',e=>{
   targetRY=(t.clientX/innerWidth-.5)*.9;
   targetRX=(t.clientY/innerHeight-.5)*.6;
 },{passive:true});
-
 let scrollP=0;
 addEventListener('scroll',()=>{scrollP=scrollY});
-
 function animate(){
   requestAnimationFrame(animate);
   curRX+=(targetRX-curRX)*.04; curRY+=(targetRY-curRY)*.04;
   sphere.rotation.y+=isMobile?.0016:.0022;
   sphere.rotation.x=curRX;
   sphere.rotation.y+=curRY*.15;
-  // la sphère s'éloigne doucement quand on défile (effet "voyage")
   sphere.position.z=Math.min(scrollP*.012,14);
   camera.position.x=curRY*1.5;
   camera.position.y=-curRX*1.2;
@@ -551,7 +475,7 @@ function animate(){
 }
 
 /* ============================================================
-   PRELOADER
+   PRELOADER +effet de décryptage du titre
    ============================================================ */
 let pct=0;
 const pctEl=document.getElementById('loadPct');
@@ -560,18 +484,38 @@ const pfake=setInterval(()=>{
   pctEl.textContent=Math.floor(pct)+'%';
   if(pct>=100)clearInterval(pfake);
 },110);
+let titleStarted=false;
+function startTitleDecode(){
+  if(titleStarted)return;titleStarted=true;
+  const chars="#*+<>/\\{}$%&@0123456789";
+  const text=heroTitle.textContent;
+  let frame=0;
+  const iv=setInterval(()=>{
+    frame++;
+    const revealed=Math.floor(frame/2.4);
+    let out="";
+    for(let i=0;i<text.length;i++){
+      out+=(i<revealed||text[i]===' ')?text[i]:chars[Math.floor(Math.random()*chars.length)];
+    }
+    heroTitle.textContent=out;
+    if(revealed>=text.length){clearInterval(iv);heroTitle.innerHTML=heroFinalHTML;}
+  },28);
+}
 function finishLoad(){
   const wait=setInterval(()=>{
-    if(pct>=99||pct>=82&&!webglOK){
+    if(pct>=99||(pct>=82&&!webglOK)){
       clearInterval(wait);clearInterval(pfake);
       pctEl.textContent='100%';
-      setTimeout(()=>document.getElementById('loader').classList.add('done'),350);
+      setTimeout(()=>{
+        document.getElementById('loader').classList.add('done');
+        setTimeout(startTitleDecode,300); /* le titre se décrypte après le loader */
+      },350);
     }
   },150);
 }
 
 /* ============================================================
-   UI — curseur, nav, progress, reveal, cuentaurs, marquee
+   UI — curseur, nav, progress, reveal, compteurs, marquee
    ============================================================ */
 const dot=document.getElementById('cursorDot'),ring=document.getElementById('cursor');
 let mx=0,my=0,rx=0,ry=0;
@@ -581,7 +525,6 @@ document.querySelectorAll('a,button,.plan,.step,.quote').forEach(el=>{
   el.addEventListener('mouseenter',()=>ring.classList.add('hover'));
   el.addEventListener('mouseleave',()=>ring.classList.remove('hover'));
 });
-
 const nav=document.getElementById('nav'),progress=document.getElementById('progress');
 addEventListener('scroll',()=>{
   nav.classList.toggle('scrolled',scrollY>60);
@@ -590,12 +533,10 @@ addEventListener('scroll',()=>{
 });
 document.getElementById('burger').onclick=()=>document.getElementById('navlinks').classList.toggle('open');
 document.querySelectorAll('.navlinks a').forEach(a=>a.onclick=()=>document.getElementById('navlinks').classList.remove('open'));
-
 const io=new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
 }),{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
 const cio=new IntersectionObserver(es=>es.forEach(e=>{
   if(!e.isIntersecting)return;cio.unobserve(e.target);
   const el=e.target,to=+el.dataset.to;let t0=null;
@@ -605,7 +546,6 @@ const cio=new IntersectionObserver(es=>es.forEach(e=>{
   requestAnimationFrame(anim);
 }),{threshold:.6});
 document.querySelectorAll('.count').forEach(el=>cio.observe(el));
-
 (function(){
   const items=['Industrie','Agroalimentaire','BTP','Cosmétique réglementée','Métallerie','Transport','Textile','Électronique'];
   const unit=items.map(i=>`<span>${i}</span>`).join('<span>·</span>');
@@ -613,7 +553,7 @@ document.querySelectorAll('.count').forEach(el=>cio.observe(el));
 })();
 
 /* ============================================================
-   TILT 3D cartes + BOUTONS MAGNÉTIQUES (desktop uniquement)
+   TILT 3D + BOUTONS MAGNÉTIQUES (desktop)
    ============================================================ */
 if(!isMobile){
   document.querySelectorAll('.tilt').forEach(card=>{
@@ -628,12 +568,152 @@ if(!isMobile){
   document.querySelectorAll('.magnetic').forEach(btn=>{
     btn.addEventListener('mousemove',e=>{
       const r=btn.getBoundingClientRect();
-      const dx=(e.clientX-r.left-r.width/2)*.25, dy=(e.clientY-r.top-r.height/2)*.35;
-      btn.style.transform=`translate(${dx}px,${dy}px)`;
+      btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`;
     });
     btn.addEventListener('mouseleave',()=>{btn.style.transform=''});
   });
 }
+
+/* ============================================================
+   SALLE DES DONNÉES — modules en orbite cliquables
+   ============================================================ */
+const MODULES=[
+  {icon:"🔗",c:0x34f5a5,t:"Connecteurs",key:"Flux d'entrée",
+   d:"Le module d'entrée : il se branche sur Sage, Cegid, QuickBooks, EBP, Indy, vos banques et vos factures d'énergie. Chaque écriture comptable devient une donnée exploitable — sans jamais être ressaisie.",
+   sv:"< 1 h",sl:"de mise en place initiale"},
+  {icon:"🧮",c:0xe8c776,t:"Moteur carbone",key:"Calcul ADEME",
+   d:"Le cœur de calcul : chaque euro dépensé, chaque kilomètre parcouru et chaque kilowatt-heure consommé est converti en émissions CO₂e via les facteurs officiels de l'ADEME — scopes 1, 2 et 3 inclus.",
+   sv:"12 000+",sl:"facteurs d'émission embarqués"},
+  {icon:"🛡️",c:0x7ad7f0,t:"Garde-fou qualit",key:"Fiabilité",
+   d:"Le module de confiance : il détecte les anomalies, les données manquantes et les incohérences avant qu'un expert ESG ne valide le rapport. Chez Verdia, l'IA propose — l'humain certifie.",
+   sv:"100 %",sl:"des rapports validés par un expert humain"},
+  {icon:"📄",c:0xf09c6a,t:"Générateur de rapports",key:"Sortie conforme",
+   d:"Le module de sortie : il assemble vos données en rapport CSRD / VSEA présentable et pré-remplit les questionnaires de vos clients grands comptes — quel que soit leur format propriétaire.",
+   sv:"6 h",sl:"pour un rapport complet"},
+  {icon:"🤖",c:0xeef4f0,t:"Copilot IA",key:"Verdia, elle-même",
+   d:"C'est moi : je veille en continu. J'explique chaque indicateur en langage clair, j'alerte avant les échéances réglementaires et je vous suggère les actions les plus impactantes pour réduire votre empreinte.",
+   sv:"24/7",sl:"disponible pour chaque dirigeant"}
+];
+let salleActive=false, salleRenderer=null;
+
+function initSalle(){
+  const holder=document.getElementById('salleCanvas');
+  let r2;
+  try{
+    r2=new THREE.WebGLRenderer({antialias:!isMobile,alpha:true});
+    if(!r2)throw 0;
+  }catch(e){holder.style.display='none';return;}
+  salleRenderer=r2;
+  r2.setPixelRatio(Math.min(devicePixelRatio,2));
+  holder.appendChild(r2.domElement);
+  const sc=new THREE.Scene();
+  const cam=new THREE.PerspectiveCamera(50,1,.1,100);
+  cam.position.set(0,3,12);
+
+  /* noyau : icosaèdre wireframe + halo */
+  const core=new THREE.Mesh(new THREE.IcosahedronGeometry(1.25,1),
+    new THREE.MeshBasicMaterial({color:0x34f5a5,wireframe:true,transparent:true,opacity:.85}));
+  sc.add(core);
+  const halo=new THREE.Mesh(new THREE.SphereGeometry(.75,24,24),
+    new THREE.MeshBasicMaterial({color:0x34f5a5,transparent:true,opacity:.18}));
+  sc.add(halo);
+
+  const meshes=[];
+  MODULES.forEach((m,i)=>{
+    const orbit=new THREE.Group();
+    orbit.rotation.x=.35+i*.14;
+    orbit.rotation.z=-.15+i*.08;
+    const seg=90, rp=[];
+    for(let k=0;k<=seg;k++){const a=k/seg*Math.PI*2;rp.push(new THREE.Vector3(Math.cos(a)*m.r,0,Math.sin(a)*m.r));}
+    const ring=new THREE.Line(new THREE.BufferGeometry().setFromPoints(rp),
+      new THREE.LineBasicMaterial({color:m.c,transparent:true,opacity:.18}));
+    orbit.add(ring);
+
+    const mesh=new THREE.Mesh(new THREE.SphereGeometry(.42,20,20),
+      new THREE.MeshBasicMaterial({color:m.c}));
+    mesh.userData.i=i;
+    const glow=new THREE.Mesh(new THREE.SphereGeometry(.62,16,16),
+      new THREE.MeshBasicMaterial({color:m.c,transparent:true,opacity:.12}));
+    mesh.add(glow);
+    orbit.add(mesh);
+    sc.add(orbit);
+    meshes.push({mesh,angle:i*(Math.PI*2/MODULES.length),speed:.22+i*.05,r:m.r,i});
+  });
+
+  /* raycasting : survol + clic/tap */
+  const ray=new THREE.Raycaster(), ptr=new THREE.Vector2();
+  let hovered=-1;
+  function pick(e,cb){
+    const r=r2.domElement.getBoundingClientRect();
+    ptr.x=((e.clientX-r.left)/r.width)*2-1;
+    ptr.y=-((e.clientY-r.top)/r.height)*2+1;
+    cam.updateMatrixWorld();
+    ray.setFromCamera(ptr,cam);
+    const targets=meshes.map(o=>o.mesh);
+    const hits=ray.intersectObjects(targets);
+    cb(hits.length?hits[0].object.userData.i:-1);
+  }
+  r2.domElement.addEventListener('pointermove',e=>pick(e,i=>hovered=i));
+  r2.domElement.addEventListener('pointerdown',e=>pick(e,i=>{if(i>=0)selectModule(i)}));
+
+  /* taille */
+  function resize(){
+    const w=holder.clientWidth,h=holder.clientHeight;
+    r2.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix();
+  }
+  resize();addEventListener('resize',resize);
+
+  /* rendu (uniquement si la section est visible) */
+  new IntersectionObserver(es=>es.forEach(e=>salleActive=e.isIntersecting),{threshold:.05})
+    .observe(document.getElementById('salle'));
+
+  const clock=new THREE.Clock();
+  (function loop(){
+    requestAnimationFrame(loop);
+    if(!salleActive)return;
+    const dt=clock.getDelta(), t=clock.elapsedTime;
+    core.rotation.y+=dt*.5;core.rotation.x+=dt*.18;
+    halo.scale.setScalar(1+Math.sin(t*2)*.06);
+    meshes.forEach(o=>{
+      o.angle+=dt*o.speed;
+      o.mesh.position.set(Math.cos(o.angle)*o.r,Math.sin(o.angle*1.7)*.35,Math.sin(o.angle)*o.r);
+      const target=(o.i===hovered)?1.5:(o.i===selectedModule?1.3:1);
+      o.mesh.scale.setScalar(o.mesh.scale.x+(target-o.mesh.scale.x)*.12);
+    });
+    cam.position.x=Math.sin(t*.1)*.8;
+    cam.lookAt(0,0,0);
+    r2.render(sc,cam);
+  })();
+
+  selectModule(0);
+}
+
+/* panneau d'information + onglets */
+let selectedModule=-1;
+function selectModule(i){
+  selectedModule=i;
+  const m=MODULES[i];
+  const info=document.getElementById('salleInfo');
+  info.classList.remove('flash');void info.offsetWidth; /* relance l'animation */
+  info.classList.add('flash');
+  info.innerHTML=`
+    <div class="si-icon">${m.icon}</div>
+    <h3 style="color:#${m.c.toString(16).padStart(6,'0')}">${m.t}</h3>
+    <div class="si-key">${m.key} · Module 0${i+1}</div>
+    <p>${m.d}</p>
+    <div class="si-stat"><div class="v">${m.sv}</div><div class="l">${m.sl}</div></div>`;
+  document.querySelectorAll('.salle-tab').forEach((b,k)=>b.classList.toggle('on',k===i));
+}
+
+/* lancement de la salle (après le DOM layout) */
+const tabsHolder=document.getElementById('salleTabs');
+MODULES.forEach((m,i)=>{
+  const b=document.createElement('button');
+  b.className='salle-tab';b.textContent=`0${i+1} · ${m.t}`;
+  b.onclick=()=>selectModule(i);
+  tabsHolder.appendChild(b);
+});
+addEventListener('load',initSalle);
 
 /* ============================================================
    SIMULATEUR
@@ -673,6 +753,8 @@ const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 const KB=[
   {re:/(bonjour|salut|hello|bonsoir|hey|coucou)/,
    a:"Bonjour ! 👋 Je suis Verdia, l'IA qui automatise la conformité ESG des PME. Je peux vous parler de nos offres, de la CSRD, de votre bilan carbone, de la sécurité de vos données… Que souhaitez-vous savoir ?"},
+  {re:/(salle|module|orbite|explore|c.?ur.*moteur)/,
+   a:"Ah, vous avez vu la **Salle des données** ! 🛸 C'est la démonstration visuelle de notre moteur : chaque module en orbite correspond à une brique réelle de Verdia (connecteurs, calcul carbone, garde-fou qualité, générateur de rapports… et moi-même, le copilot).\n\nTouchez un module dans la section « La salle des données » de cette page pour découvrir son rôle détaillé — ou appuyez sur les boutons sous la visualisation."},
   {re:/(econo|gain|rentab|gagner)/,
    a:"L'économie se calcule vite :\n\n• Un rapport CSRD en cabinet de conseil : **10 000 à 20 000 €**\n• Le même rapport avec Verdia : **à partir de 990 €**\n• Votre temps : 6 semaines → 6 heures, soit **95 % de temps libéré**\n\nSans compter les appels d'offres que vous pouvez désormais remporter grâce à vos données ESG. 📈"},
   {re:/(prix|tarif|combien|cout|co[ûu]t|abonnement|offre)/,
@@ -682,7 +764,7 @@ const KB=[
   {re:/(carbone|co2|empreinte|bilan|emission)/,
    a:"Notre moteur calcule votre empreinte carbone avec les **facteurs d'émission officiels de l'ADEME** (base empreinte). Concrètement : nous analysons vos écritures comptables, vos factures d'énergie et vos déplacements pour couvrir les scopes 1, 2 et 3.\n\n💡 Vous pouvez tester une **version simplifiée** de ce calcul dans le simulateur de cette page — cherchez la section « Aperçu express ». Sinon, je peux lancer une démo complète avec vous."},
   {re:/(demo|demonstration|essai|teste?r|decouvrir)/,
-   a:"Avec plaisir ! Deux options :\n\n1. **Simulateur express** (30 secondes) : remontez à la section « Aperçu express » de cette page et entrez vos chiffres.\n2. **Démo personnalisée** (30 min) : je planifie un rendez-vous avec un membre de notre équipe qui connectera vos données en direct.\n\nLaissez-moi votre email et je m'occupe de tout. 🙂"},
+   a:"Avec plaisir ! Trois options :\n\n1. **Salle des données** : explorez les modules de notre moteur en 3D, juste au-dessus sur cette page\n2. **Simulateur express** (30 secondes) : section « Aperçu express », entrez vos chiffres\n3. **Démo personnalisée** (30 min) : je planifie un rendez-vous avec notre équipe qui connectera vos données en direct\n\nLaissez-moi votre email et je m'occupe de tout. 🙂"},
   {re:/(securite|rgpd|donnee|confiden|heberg)/,
    a:"Excellente question — c'est un point que nos clients dirigeants vérifient en premier. Réponses claires :\n\n• Données **hébergées exclusivement en Union européenne**\n• **Chiffrement** au repos et en transit\n• Aucune donnée revendue ni utilisée pour entraîner des modèles tiers\n• **DPA** (accord de traitement) signé avec chaque client — conforme RGPD\n\nVous restez propriétaire de vos données, en toutes circonstances."},
   {re:/(compta|sage|cegid|quickbook|ebp|indy|connexion|connect|integration|logiciel)/,
@@ -694,13 +776,13 @@ const KB=[
   {re:/(concurrence|concurrent|differen|pourquoi vous|unique)/,
    a:"Très bonne question — voici pourquoi Verdia est différent :\n\n• Les **grands éditeurs** (type SAP, Diligent) visent les grands groupes : trop chers et complexes pour une PME\n• Les **consultants** font le travail, mais à 10 000 € et à refaire chaque année\n• Les **petits outils** ne font qu'un fragment (bilan carbone seul, questionnaire seul)\n\nVerdia est le **seul flux complet automatisé** pensé pour les PME : de la comptabilité brute jusqu'au rapport certifiable. Et je suis là, incluse dans l'abonnement, pour tout vous expliquer."},
   {re:/(qui etes.?vous|presente|verdia|start.?up|entreprise)/,
-   a:"Je suis **Verdia**, start-up française née en 2026 d'un constat simple : les PME paient le prix fort de la transition réglementaire européenne, sans en avoir les moyens. Notre mission est de rendre la conformité ESG **accessible, automatique et — osons le mot — agréable**.\n\nJe suis l'IA copilote intégrée à chaque offre : je réponds aux dirigeants 24h/24, j'explique chaque indicateur et je déclenche des alertes avant les échéances. Vous voyez ma sphère de données tourner derrière moi ? Chaque point est une donnée que je transforme en rapport."},
+   a:"Je suis **Verdia**, start-up française née en 2026 d'un constat simple : les PME paient le prix fort de la transition réglementaire européenne, sans en avoir les moyens. Notre mission est de rendre la conformité ESG **accessible, automatique et — osons le mot — agréable**.\n\nJe suis l'IA copilote intégrée à chaque offre : je réponds aux dirigeants 24h/24, j'explique chaque indicateur et je déclenche des alertes avant les échéances."},
   {re:/(merci|super|parfait|genial|top|cool)/,
    a:"Avec grand plaisir ! 🌿 N'hésitez pas si vous avez d'autres questions — ou si vous souhaitez lancer votre premier rapport. On dit toujours chez Verdia : votre conformité ESG pourrait être terminée avant ce soir."},
   {re:/(appeler|tel|telephone|contact|rendez.?vous|rdv|humain)/,
    a:"Bien sûr — vous parlez à un humain en moins de 24 h :\n\n📧 **bonjour@verdia.io**\n📞 Lun–ven, 9h–18h\n\nOu laissez-moi vos nom et email ici : je transmets immédiatement à l'équipe, qui vous recontactera. En attendant, je reste à votre disposition !"}
 ];
-const FALLBACK="Intéressante question ! Je peux surtout vous renseigner sur : nos **tarifs**, la **CSRD**, le **bilan carbone**, la **sécurité des données**, nos **intégrations comptables**, les **délais**, l'**économie réalisée**, la **démo**, ou parler à un **humain**. Que souhaitez-vous explorer ?";
+const FALLBACK="Intéressante question ! Je peux surtout vous renseigner sur : nos **tarifs**, la **CSRD**, le **bilan carbone**, la **salle des données**, la **sécurité des données**, nos **intégrations comptables**, les **délais**, la **démo**, ou parler à un **humain**. Que souhaitez-vous explorer ?";
 
 function md(text){
   return text.replace(/&/g,'&amp;').replace(/</g,'&lt;')
@@ -730,14 +812,13 @@ function initializeChat(){
   chatInit=true;
   const welcome="Bonjour ! 👋 Je suis **Verdia**, l'IA copilote de votre conformité ESG.\n\nJe réponds à toutes vos questions sur vos obligations, notre solution, nos tarifs — et je peux même estimer votre empreinte carbone. Que puis-je faire pour vous ?";
   setTimeout(()=>addMsg(welcome,'bot'),400);
-  ['Combien ça coûte ?','C\'est quoi la CSRD ?','Estime mon bilan carbone','Quelle économie ?','Parler à un humain'].forEach(label=>{
+  ['Combien ça coûte ?','C\'est quoi la CSRD ?','La salle des données ?','Estime mon bilan carbone','Parler à un humain'].forEach(label=>{
     const c=document.createElement('button');c.className='chip';c.textContent=label;
     c.onclick=()=>{if(busy)return;addMsg(label,'user');reply(label)};
     chipsEl.appendChild(c);
   });
 }
 
-/* lancement */
 init3D();
 </script>
 </body>
