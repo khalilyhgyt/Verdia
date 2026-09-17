@@ -64,8 +64,9 @@ nav.scrolled{background:rgba(6,9,13,.75);backdrop-filter:blur(16px);padding:14px
 .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
 .burger span{width:24px;height:1.5px;background:var(--paper);transition:.3s}
 
-/* ============ HERO ============ */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;padding:0 7vw;overflow:hidden}
+/* ============ HERO (centré) ============ */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:0 7vw;overflow:hidden}
+.hero > *{width:100%;max-width:1200px}
 .hero-eyebrow{font-size:.78rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;gap:14px}
 .hero-eyebrow::before{content:'';width:44px;height:1px;background:var(--gold)}
 .hero h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(3rem,7.6vw,6.6rem);line-height:1.04;max-width:13ch;letter-spacing:-.01em;text-shadow:0 0 60px rgba(6,9,13,.9)}
@@ -80,6 +81,7 @@ nav.scrolled{background:rgba(6,9,13,.75);backdrop-filter:blur(16px);padding:14px
 .reveal{opacity:0;transform:translateY(46px);transition:opacity 1s cubic-bezier(.2,.7,.3,1),transform 1s cubic-bezier(.2,.7,.3,1)}
 .reveal.in{opacity:1;transform:none}
 section{padding:120px 7vw;position:relative}
+section > *{max-width:1200px;margin-left:auto;margin-right:auto;width:100%}
 .tag{font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px}
 .tag::before{content:'';width:30px;height:1px;background:var(--gold)}
 h2{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2.1rem,4.4vw,3.8rem);line-height:1.12;letter-spacing:-.01em;max-width:20ch}
@@ -103,7 +105,7 @@ h2 em{font-style:italic;color:var(--emerald)}
 .tilt .inner{transform:translateZ(30px)}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:26px;margin-top:70px}
 .step{border:1px solid var(--line);padding:44px 32px;position:relative;background:rgba(12,18,24,.72);backdrop-filter:blur(8px)}
-.step .n{font-family:'Fraunces',serif;font-style:italic;font-size:3.4rem;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(238,244,240,.28);margin-bottom:24px}
+.step .n{font-family:'Fraunces',serif;font-style:italic;font-size:3.4rem;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(238,244,240,.28);margin-bottom:24px;display:block}
 .step h3{font-family:'Fraunces',serif;font-weight:400;font-size:1.32rem;margin-bottom:14px}
 .step p{color:var(--muted);font-size:.9rem;line-height:1.75}
 .step .icon{position:absolute;top:32px;right:28px;font-size:1.4rem;opacity:.85}
@@ -124,7 +126,7 @@ h2 em{font-style:italic;color:var(--emerald)}
 .si-stat .l{color:var(--muted);font-size:.78rem;margin-top:4px}
 .salle-info.flash{animation:siflash .5s ease}
 @keyframes siflash{0%{border-color:var(--emerald);box-shadow:0 0 40px rgba(52,245,165,.25)}100%{border-color:var(--line)}}
-.salle-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.salle-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;justify-content:center}
 .salle-tab{border:1px solid var(--line);background:transparent;color:var(--muted);font-family:'Manrope',sans-serif;font-size:.74rem;padding:8px 14px;cursor:pointer;transition:.25s;letter-spacing:.05em}
 .salle-tab.on,.salle-tab:hover{border-color:var(--emerald);color:var(--emerald)}
 
@@ -150,7 +152,7 @@ h2 em{font-style:italic;color:var(--emerald)}
 /* ============ TARIFS ============ */
 .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;margin-top:70px}
 .plan{border:1px solid var(--line);padding:46px 36px;position:relative;background:rgba(12,18,24,.72);backdrop-filter:blur(8px)}
-.plan .badge{position:absolute;top:-13px;left:50%;transform:translateZ(40px) translateX(-50%) if(0){};background:var(--gold);color:var(--ink);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:6px 16px;white-space:nowrap;transform:translateX(-50%)}
+.plan .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--ink);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:6px 16px;white-space:nowrap}
 .plan h3{font-family:'Fraunces',serif;font-weight:400;font-size:1.5rem}
 .plan .price{font-family:'Fraunces',serif;font-size:2.7rem;margin:20px 0 6px}
 .plan .price small{font-size:.3em;color:var(--muted);font-family:'Manrope',sans-serif}
@@ -160,7 +162,7 @@ h2 em{font-style:italic;color:var(--emerald)}
 .plan li::before{content:'—';color:var(--emerald)}
 .plan .btn{width:100%;margin-top:34px}
 
-/* ============ TÉMOIGNAGES / MARQUEE / CTA / FOOTER ============ */
+/* ============ TÉMOIGNAGES / MARQUEE ============ */
 .quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;margin-top:70px}
 .quote{border:1px solid var(--line);padding:38px 32px;background:rgba(12,18,24,.72);backdrop-filter:blur(8px);display:flex;flex-direction:column;gap:22px}
 .quote .q{font-family:'Fraunces',serif;font-style:italic;font-size:1.12rem;line-height:1.65;color:var(--paper)}
@@ -170,10 +172,12 @@ h2 em{font-style:italic;color:var(--emerald)}
 .marquee-track{display:inline-block;animation:scroll 40s linear infinite}
 .marquee span{color:var(--muted);font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;margin:0 17px}
 @keyframes scroll{to{transform:translateX(-50%)}}
-.final{text-align:center;padding:160px 7vw}
+
+/* ============ CTA FINAL / FOOTER (centrés) ============ */
+.final{text-align:center;padding:160px 7vw;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .final h2{max-width:24ch;margin:0 auto}
 .final .btn{margin-top:46px;padding:16px 44px;font-size:.9rem}
-footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;color:var(--muted);font-size:.78rem;letter-spacing:.1em}
+footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-content:center;flex-wrap:wrap;gap:24px;color:var(--muted);font-size:.78rem;letter-spacing:.1em;text-align:center}
 
 /* ============ CHAT IA ============ */
 #chatFab{position:fixed;bottom:28px;right:28px;z-index:200;width:62px;height:62px;border-radius:50%;background:var(--emerald);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 40px rgba(52,245,165,.4);animation:breathe 3.4s ease infinite;transition:transform .3s}
@@ -210,6 +214,17 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
   .navlinks{display:none}
   .burger{display:flex}
   .navlinks.open{display:flex;position:fixed;top:0;right:0;bottom:0;width:min(320px,80vw);background:rgba(12,18,24,.97);flex-direction:column;justify-content:center;gap:34px;padding:40px;border-left:1px solid var(--line);align-items:flex-start;z-index:150;backdrop-filter:blur(20px)}
+  /* --- Hero centré sur mobile --- */
+  .hero{text-align:center;padding:0 6vw}
+  .hero-eyebrow{justify-content:center}
+  .hero-eyebrow::before{display:none}
+  .hero h1{margin-left:auto;margin-right:auto}
+  .hero p.lead{margin-left:auto;margin-right:auto}
+  .hero-cta{justify-content:center}
+  .scroll-hint{left:50%;transform:translateX(-50%)}
+  /* --- Sections centrées sur mobile --- */
+  .tag{justify-content:center}
+  .tag::before{display:none}
   .simu-grid{grid-template-columns:1fr;gap:34px}
   .salle-grid{grid-template-columns:1fr;gap:26px}
   #salleCanvas{height:360px}
@@ -384,7 +399,7 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 /* ============================================================
-   STOCKAGE DE L'HTML FINAL DU TITRE (avant décryptage)
+   TITRE HÉRO — sauvegarde du HTML final (avant décryptage)
    ============================================================ */
 const heroTitle=document.getElementById('heroTitle');
 const heroFinalHTML=heroTitle.innerHTML;
@@ -475,7 +490,7 @@ function animate(){
 }
 
 /* ============================================================
-   PRELOADER +effet de décryptage du titre
+   PRELOADER + décryptage du titre
    ============================================================ */
 let pct=0;
 const pctEl=document.getElementById('loadPct');
@@ -508,7 +523,7 @@ function finishLoad(){
       pctEl.textContent='100%';
       setTimeout(()=>{
         document.getElementById('loader').classList.add('done');
-        setTimeout(startTitleDecode,300); /* le titre se décrypte après le loader */
+        setTimeout(startTitleDecode,300);
       },350);
     }
   },150);
@@ -578,23 +593,23 @@ if(!isMobile){
    SALLE DES DONNÉES — modules en orbite cliquables
    ============================================================ */
 const MODULES=[
-  {icon:"🔗",c:0x34f5a5,t:"Connecteurs",key:"Flux d'entrée",
+  {icon:"🔗",c:0x34f5a5,r:3.2,t:"Connecteurs",key:"Flux d'entrée",
    d:"Le module d'entrée : il se branche sur Sage, Cegid, QuickBooks, EBP, Indy, vos banques et vos factures d'énergie. Chaque écriture comptable devient une donnée exploitable — sans jamais être ressaisie.",
    sv:"< 1 h",sl:"de mise en place initiale"},
-  {icon:"🧮",c:0xe8c776,t:"Moteur carbone",key:"Calcul ADEME",
+  {icon:"🧮",c:0xe8c776,r:3.9,t:"Moteur carbone",key:"Calcul ADEME",
    d:"Le cœur de calcul : chaque euro dépensé, chaque kilomètre parcouru et chaque kilowatt-heure consommé est converti en émissions CO₂e via les facteurs officiels de l'ADEME — scopes 1, 2 et 3 inclus.",
    sv:"12 000+",sl:"facteurs d'émission embarqués"},
-  {icon:"🛡️",c:0x7ad7f0,t:"Garde-fou qualit",key:"Fiabilité",
+  {icon:"🛡️",c:0x7ad7f0,r:4.6,t:"Garde-fou qualité",key:"Fiabilité",
    d:"Le module de confiance : il détecte les anomalies, les données manquantes et les incohérences avant qu'un expert ESG ne valide le rapport. Chez Verdia, l'IA propose — l'humain certifie.",
    sv:"100 %",sl:"des rapports validés par un expert humain"},
-  {icon:"📄",c:0xf09c6a,t:"Générateur de rapports",key:"Sortie conforme",
+  {icon:"📄",c:0xf09c6a,r:5.3,t:"Générateur de rapports",key:"Sortie conforme",
    d:"Le module de sortie : il assemble vos données en rapport CSRD / VSEA présentable et pré-remplit les questionnaires de vos clients grands comptes — quel que soit leur format propriétaire.",
    sv:"6 h",sl:"pour un rapport complet"},
-  {icon:"🤖",c:0xeef4f0,t:"Copilot IA",key:"Verdia, elle-même",
+  {icon:"🤖",c:0xeef4f0,r:6.0,t:"Copilot IA",key:"Verdia, elle-même",
    d:"C'est moi : je veille en continu. J'explique chaque indicateur en langage clair, j'alerte avant les échéances réglementaires et je vous suggère les actions les plus impactantes pour réduire votre empreinte.",
    sv:"24/7",sl:"disponible pour chaque dirigeant"}
 ];
-let salleActive=false, salleRenderer=null;
+let salleActive=false, salleRenderer=null, selectedModule=-1;
 
 function initSalle(){
   const holder=document.getElementById('salleCanvas');
@@ -663,7 +678,7 @@ function initSalle(){
   }
   resize();addEventListener('resize',resize);
 
-  /* rendu (uniquement si la section est visible) */
+  /* rendu uniquement si la section est visible */
   new IntersectionObserver(es=>es.forEach(e=>salleActive=e.isIntersecting),{threshold:.05})
     .observe(document.getElementById('salle'));
 
@@ -689,12 +704,11 @@ function initSalle(){
 }
 
 /* panneau d'information + onglets */
-let selectedModule=-1;
 function selectModule(i){
   selectedModule=i;
   const m=MODULES[i];
   const info=document.getElementById('salleInfo');
-  info.classList.remove('flash');void info.offsetWidth; /* relance l'animation */
+  info.classList.remove('flash');void info.offsetWidth;
   info.classList.add('flash');
   info.innerHTML=`
     <div class="si-icon">${m.icon}</div>
@@ -705,7 +719,6 @@ function selectModule(i){
   document.querySelectorAll('.salle-tab').forEach((b,k)=>b.classList.toggle('on',k===i));
 }
 
-/* lancement de la salle (après le DOM layout) */
 const tabsHolder=document.getElementById('salleTabs');
 MODULES.forEach((m,i)=>{
   const b=document.createElement('button');
@@ -753,7 +766,7 @@ const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 const KB=[
   {re:/(bonjour|salut|hello|bonsoir|hey|coucou)/,
    a:"Bonjour ! 👋 Je suis Verdia, l'IA qui automatise la conformité ESG des PME. Je peux vous parler de nos offres, de la CSRD, de votre bilan carbone, de la sécurité de vos données… Que souhaitez-vous savoir ?"},
-  {re:/(salle|module|orbite|explore|c.?ur.*moteur)/,
+  {re:/(salle|module|orbite|explore)/,
    a:"Ah, vous avez vu la **Salle des données** ! 🛸 C'est la démonstration visuelle de notre moteur : chaque module en orbite correspond à une brique réelle de Verdia (connecteurs, calcul carbone, garde-fou qualité, générateur de rapports… et moi-même, le copilot).\n\nTouchez un module dans la section « La salle des données » de cette page pour découvrir son rôle détaillé — ou appuyez sur les boutons sous la visualisation."},
   {re:/(econo|gain|rentab|gagner)/,
    a:"L'économie se calcule vite :\n\n• Un rapport CSRD en cabinet de conseil : **10 000 à 20 000 €**\n• Le même rapport avec Verdia : **à partir de 990 €**\n• Votre temps : 6 semaines → 6 heures, soit **95 % de temps libéré**\n\nSans compter les appels d'offres que vous pouvez désormais remporter grâce à vos données ESG. 📈"},
@@ -764,7 +777,7 @@ const KB=[
   {re:/(carbone|co2|empreinte|bilan|emission)/,
    a:"Notre moteur calcule votre empreinte carbone avec les **facteurs d'émission officiels de l'ADEME** (base empreinte). Concrètement : nous analysons vos écritures comptables, vos factures d'énergie et vos déplacements pour couvrir les scopes 1, 2 et 3.\n\n💡 Vous pouvez tester une **version simplifiée** de ce calcul dans le simulateur de cette page — cherchez la section « Aperçu express ». Sinon, je peux lancer une démo complète avec vous."},
   {re:/(demo|demonstration|essai|teste?r|decouvrir)/,
-   a:"Avec plaisir ! Trois options :\n\n1. **Salle des données** : explorez les modules de notre moteur en 3D, juste au-dessus sur cette page\n2. **Simulateur express** (30 secondes) : section « Aperçu express », entrez vos chiffres\n3. **Démo personnalisée** (30 min) : je planifie un rendez-vous avec notre équipe qui connectera vos données en direct\n\nLaissez-moi votre email et je m'occupe de tout. 🙂"},
+   a:"Avec plaisir ! Trois options :\n\n1. **Salle des données** : explorez les modules de notre moteur en 3D, sur cette page\n2. **Simulateur express** (30 secondes) : section « Aperçu express », entrez vos chiffres\n3. **Démo personnalisée** (30 min) : je planifie un rendez-vous avec notre équipe qui connectera vos données en direct\n\nLaissez-moi votre email et je m'occupe de tout. 🙂"},
   {re:/(securite|rgpd|donnee|confiden|heberg)/,
    a:"Excellente question — c'est un point que nos clients dirigeants vérifient en premier. Réponses claires :\n\n• Données **hébergées exclusivement en Union européenne**\n• **Chiffrement** au repos et en transit\n• Aucune donnée revendue ni utilisée pour entraîner des modèles tiers\n• **DPA** (accord de traitement) signé avec chaque client — conforme RGPD\n\nVous restez propriétaire de vos données, en toutes circonstances."},
   {re:/(compta|sage|cegid|quickbook|ebp|indy|connexion|connect|integration|logiciel)/,
