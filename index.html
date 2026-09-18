@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Verdia — Votre conformité ESG, enfin automatique</title>
-<meta name="description" content="Verdia : le copilot IA qui transforme 6 semaines de reporting ESG en 6 heures. Bilan carbone, CSRD, VSEA — automatiques.">
+<title>Verdia — Le copilote IA de votre conformité financière et ESG</title>
+<meta name="description" content="Verdia centralise vos données comptables, carbone et ESG une seule fois — et les réutilise pour vos rapports, questionnaires clients et votre pilotage. Comptabilité + Carbone + ESG + IA, dans un seul espace.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -69,9 +69,10 @@ nav.scrolled{background:rgba(6,9,13,.75);backdrop-filter:blur(16px);padding:14px
 .hero > *{width:100%;max-width:1200px}
 .hero-eyebrow{font-size:.78rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;gap:14px}
 .hero-eyebrow::before{content:'';width:44px;height:1px;background:var(--gold)}
-.hero h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(3rem,7.6vw,6.6rem);line-height:1.04;max-width:13ch;letter-spacing:-.01em;text-shadow:0 0 60px rgba(6,9,13,.9)}
+.hero h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(3rem,7.6vw,6.6rem);line-height:1.04;max-width:16ch;letter-spacing:-.01em;text-shadow:0 0 60px rgba(6,9,13,.9)}
 .hero h1 em{font-style:italic;color:var(--emerald)}
-.hero p.lead{margin-top:32px;max-width:46ch;color:var(--muted);font-size:1.08rem;line-height:1.75;text-shadow:0 2px 20px rgba(6,9,13,.9)}
+.hero p.lead{margin-top:32px;max-width:52ch;color:var(--muted);font-size:1.08rem;line-height:1.75;text-shadow:0 2px 20px rgba(6,9,13,.9)}
+.hero p.lead b{color:var(--paper);font-weight:600}
 .hero-cta{margin-top:44px;display:flex;gap:18px;flex-wrap:wrap}
 .scroll-hint{position:absolute;bottom:36px;left:7vw;color:var(--muted);font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;display:flex;align-items:center;gap:14px;z-index:2}
 .scroll-hint::after{content:'';width:1px;height:42px;background:linear-gradient(to bottom,var(--gold),transparent);animation:hint 2.2s ease infinite}
@@ -84,9 +85,9 @@ section{padding:120px 7vw;position:relative}
 section > *{max-width:1200px;margin-left:auto;margin-right:auto;width:100%}
 .tag{font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px}
 .tag::before{content:'';width:30px;height:1px;background:var(--gold)}
-h2{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2.1rem,4.4vw,3.8rem);line-height:1.12;letter-spacing:-.01em;max-width:20ch}
+h2{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2.1rem,4.4vw,3.8rem);line-height:1.12;letter-spacing:-.01em;max-width:22ch}
 h2 em{font-style:italic;color:var(--emerald)}
-.sub{color:var(--muted);line-height:1.8;margin-top:22px;max-width:52ch;font-size:1rem}
+.sub{color:var(--muted);line-height:1.8;margin-top:22px;max-width:56ch;font-size:1rem}
 
 /* ============ STATS ============ */
 .problem{background:linear-gradient(180deg,transparent,var(--ink2) 20%)}
@@ -110,13 +111,13 @@ h2 em{font-style:italic;color:var(--emerald)}
 .step p{color:var(--muted);font-size:.9rem;line-height:1.75}
 .step .icon{position:absolute;top:32px;right:28px;font-size:1.4rem;opacity:.85}
 
-/* ============ SALLE DES DONNÉES (3D interactive) ============ */
-.salle{background:linear-gradient(180deg,var(--ink),var(--ink2) 30%,var(--ink))}
+/* ============ SALLE DES DONNÉES (fond solide uniforme — bug corrigé) ============ */
+.salle{background:var(--ink2)}
 .salle-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:44px;align-items:center;margin-top:60px}
-#salleCanvas{height:480px;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 50%,rgba(52,245,165,.05),transparent 70%);position:relative;overflow:hidden}
+#salleCanvas{height:480px;border:1px solid var(--line);background-color:var(--ink2);background-image:radial-gradient(ellipse at 50% 50%,rgba(52,245,165,.05),rgba(12,18,24,0) 70%);position:relative;overflow:hidden}
 #salleCanvas canvas{display:block;cursor:pointer}
 #salleHintAbs{position:absolute;top:14px;left:16px;font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);pointer-events:none;opacity:.8}
-.salle-info{border:1px solid var(--line);background:rgba(12,18,24,.72);backdrop-filter:blur(10px);padding:38px 34px;min-height:420px;display:flex;flex-direction:column}
+.salle-info{border:1px solid var(--line);background:var(--ink2);padding:38px 34px;min-height:420px;display:flex;flex-direction:column}
 .si-icon{font-size:2rem;margin-bottom:18px}
 .salle-info h3{font-family:'Fraunces',serif;font-weight:400;font-size:1.6rem;margin-bottom:6px;transition:color .3s}
 .salle-info .si-key{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
@@ -125,21 +126,27 @@ h2 em{font-style:italic;color:var(--emerald)}
 .si-stat .v{font-family:'Fraunces',serif;font-size:2rem;color:var(--emerald)}
 .si-stat .l{color:var(--muted);font-size:.78rem;margin-top:4px}
 .salle-info.flash{animation:siflash .5s ease}
-@keyframes siflash{0%{border-color:var(--emerald);box-shadow:0 0 40px rgba(52,245,165,.25)}100%{border-color:var(--line)}}
+@keyframes siflash{0%{border-color:var(--emerald);box-shadow:0 0 40px rgba(52,245,165,.25);background:#10261e}100%{border-color:var(--line)}}
 .salle-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;justify-content:center}
 .salle-tab{border:1px solid var(--line);background:transparent;color:var(--muted);font-family:'Manrope',sans-serif;font-size:.74rem;padding:8px 14px;cursor:pointer;transition:.25s;letter-spacing:.05em}
 .salle-tab.on,.salle-tab:hover{border-color:var(--emerald);color:var(--emerald)}
 
+/* ============ TRAÇABILITÉ (bandeau source → résultat) ============ */
+.trace-strip{margin-top:56px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;border:1px solid var(--line);background:var(--ink);padding:22px 18px}
+.trace-strip .t-label{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);width:100%;text-align:center;margin-bottom:8px}
+.trace-step{font-size:.78rem;color:var(--paper);border:1px solid rgba(52,245,165,.3);padding:8px 16px;background:rgba(52,245,165,.05);white-space:nowrap}
+.trace-arrow{color:var(--gold);font-size:.9rem}
+
 /* ============ SIMULATEUR ============ */
-.simu{background:linear-gradient(160deg,var(--ink2),var(--ink) 65%);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.simu{background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .simu-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;margin-top:56px}
-.panel{border:1px solid var(--line);background:rgba(6,9,13,.6);padding:40px;backdrop-filter:blur(10px)}
+.panel{border:1px solid var(--line);background:var(--ink2);padding:40px}
 .field{margin-bottom:26px}
 .field label{display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
 .field input{width:100%;background:rgba(255,255,255,.03);border:1px solid var(--line);color:var(--paper);padding:14px 16px;font-family:'Manrope',sans-serif;font-size:1rem;outline:none;transition:.3s}
 .field input:focus{border-color:var(--emerald);box-shadow:0 0 24px rgba(52,245,165,.15)}
 .panel .btn{width:100%;margin-top:8px}
-.simu-result{border:1px solid rgba(52,245,165,.3);padding:46px 40px;text-align:center;background:radial-gradient(ellipse at 50% 0%,var(--emerald-dim),transparent 70%);min-height:320px;display:flex;flex-direction:column;justify-content:center}
+.simu-result{border:1px solid rgba(52,245,165,.3);padding:46px 40px;text-align:center;background:var(--ink2);min-height:320px;display:flex;flex-direction:column;justify-content:center}
 .simu-result .co2{font-family:'Fraunces',serif;font-size:clamp(3.4rem,6vw,5.4rem);color:var(--emerald);line-height:1;text-shadow:0 0 40px rgba(52,245,165,.4)}
 .simu-result .co2 small{font-size:.32em;color:var(--paper);font-style:italic}
 .simu-result p{color:var(--muted);margin-top:20px;font-size:.92rem;line-height:1.7;max-width:38ch;margin-left:auto;margin-right:auto}
@@ -214,7 +221,6 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
   .navlinks{display:none}
   .burger{display:flex}
   .navlinks.open{display:flex;position:fixed;top:0;right:0;bottom:0;width:min(320px,80vw);background:rgba(12,18,24,.97);flex-direction:column;justify-content:center;gap:34px;padding:40px;border-left:1px solid var(--line);align-items:flex-start;z-index:150;backdrop-filter:blur(20px)}
-  /* --- Hero centré sur mobile --- */
   .hero{text-align:center;padding:0 6vw}
   .hero-eyebrow{justify-content:center}
   .hero-eyebrow::before{display:none}
@@ -222,7 +228,6 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
   .hero p.lead{margin-left:auto;margin-right:auto}
   .hero-cta{justify-content:center}
   .scroll-hint{left:50%;transform:translateX(-50%)}
-  /* --- Sections centrées sur mobile --- */
   .tag{justify-content:center}
   .tag::before{display:none}
   .simu-grid{grid-template-columns:1fr;gap:34px}
@@ -251,7 +256,7 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
   <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Verdia<b>.</b></div>
   <div class="navlinks" id="navlinks">
     <a href="#probleme">Le problème</a>
-    <a href="#salle">Salle des données</a>
+    <a href="#salle">La plateforme</a>
     <a href="#simulateur">Simulateur</a>
     <a href="#tarifs">Tarifs</a>
     <button class="btn solid" onclick="openChat()">Démo live</button>
@@ -261,15 +266,15 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
 
 <!-- HERO -->
 <header class="hero">
-  <div class="hero-eyebrow reveal">Start-up ESG · France · 2026</div>
-  <h1 class="reveal" style="transition-delay:.1s" id="heroTitle">Six semaines de reporting ESG deviennent <em>six heures.</em></h1>
+  <div class="hero-eyebrow reveal">Copilote IA · Finance · Carbone · ESG · 2026</div>
+  <h1 class="reveal" style="transition-delay:.1s" id="heroTitle">Vos données une seule fois. <em>Tous vos rapports,</em> automatiquement.</h1>
   <p class="lead reveal" style="transition-delay:.2s">
-    Verdia est le copilot IA qui connecte votre comptabilité, calcule votre empreinte carbone
-    et génère vos rapports CSRD, VSEA et questionnaires clients — automatiquement, chaque année.
+    Verdia est le copilote IA de votre conformité financière et ESG : <b>Comptabilité + Carbone + ESG + IA, dans un seul espace.</b>
+    Centralisez vos données une fois — réutilisez-les pour vos rapports, vos questionnaires clients et votre pilotage.
   </p>
   <div class="hero-cta reveal" style="transition-delay:.3s">
     <button class="btn solid magnetic" onclick="openChat()">Demander à Verdia IA</button>
-    <a href="#salle" style="text-decoration:none"><button class="btn magnetic">Explorer la salle des données</button></a>
+    <a href="#salle" style="text-decoration:none"><button class="btn magnetic">Explorer la plateforme</button></a>
   </div>
   <div class="scroll-hint">Défiler</div>
 </header>
@@ -277,22 +282,23 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
 <!-- PROBLÈME -->
 <section class="problem" id="probleme">
   <div class="tag reveal">Le problème</div>
-  <h2 class="reveal">La conformité ESG est devenue une <em>taxe invisible</em> sur les PME.</h2>
-  <p class="sub reveal">Depuis la directive CSRD, vos grands clients exigent vos données environnementales
-  et sociales. Chaque questionnaire, chaque rapport vous coûte des semaines — ou des milliers d'euros de conseil.</p>
+  <h2 class="reveal">Vos données sont partout. Vos obligations arrivent de <em>tous les côtés.</em></h2>
+  <p class="sub reveal">Comptabilité ici, factures d'énergie là, questionnaires ESG de vos clients dans des tableurs.
+  Vos grands clients — soumis à la CSRD — vous demandent de plus en plus vos indicateurs ESG et carbone.
+  Chaque demande repart de zéro : collecte, ressaisie, vérification… ou des milliers d'euros de conseil.</p>
   <div class="stats">
     <div class="stat reveal"><div class="num"><span class="count" data-to="10">0</span><sup>+</sup></div><p>questionnaires ESG différents reçus en moyenne par une PME sous-traitante, chacun avec son format propre.</p></div>
-    <div class="stat reveal" style="transition-delay:.1s"><div class="num"><span class="count" data-to="20">0</span>&nbsp;<sup>000 €</sup></div><p>coût moyen d'un bilan carbone et d'un rapport CSRD réalisés par un cabinet de conseil traditionnel.</p></div>
-    <div class="stat reveal" style="transition-delay:.2s"><div class="num"><span class="count" data-to="150">0</span>&nbsp;<sup>000</sup></div><p>PME françaises concernées par les exigences de reporting de leurs donneurs d'ordre.</p></div>
-    <div class="stat reveal" style="transition-delay:.3s"><div class="num"><span class="count" data-to="36">0</span><sup>%</sup></div><p>des appels d'offres intègrent désormais des critères ESG éliminatoires pour les fournisseurs.</p></div>
+    <div class="stat reveal" style="transition-delay:.1s"><div class="num"><span class="count" data-to="20">0</span>&nbsp;<sup>000 €</sup></div><p>coût typique d'un bilan carbone et d'un reporting ESG réalisés par un cabinet de conseil.</p></div>
+    <div class="stat reveal" style="transition-delay:.2s"><div class="num"><span class="count" data-to="6">0</span>&nbsp;<sup>sem.</sup></div><p>de travail interne pour une PME qui répond « à la main » à ses questionnaires et reporting clients.</p></div>
+    <div class="stat reveal" style="transition-delay:.3s"><div class="num"><span class="count" data-to="1">0</span></div><p>seule centralisation nécessaire avec Verdia : les données sont saisies une fois et réutilisées partout.</p></div>
   </div>
 </section>
 
 <!-- SALLE DES DONNÉES -->
 <section class="salle" id="salle">
-  <div class="tag reveal">La salle des données</div>
+  <div class="tag reveal">La plateforme</div>
   <h2 class="reveal">Explorez le <em>cœur</em> du moteur Verdia.</h2>
-  <p class="sub reveal">Cinq modules en orbite, un moteur central. Touchez un module — ou utilisez les boutons — pour découvrir ce que chacun fait de vos données.</p>
+  <p class="sub reveal">Six modules en orbite, un moteur central. Touchez un module — ou utilisez les boutons — pour découvrir ce que chacun fait de vos données.</p>
   <div class="salle-grid">
     <div class="reveal">
       <div id="salleCanvas"><div id="salleHintAbs">Interaction · touchez un module</div></div>
@@ -300,18 +306,26 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
     </div>
     <div class="salle-info reveal" id="salleInfo"></div>
   </div>
+  <div class="trace-strip reveal">
+    <div class="t-label">Traçabilité de chaque donnée produite par l'IA</div>
+    <span class="trace-step">Source</span><span class="trace-arrow">→</span>
+    <span class="trace-step">Donnée</span><span class="trace-arrow">→</span>
+    <span class="trace-step">Méthode</span><span class="trace-arrow">→</span>
+    <span class="trace-step">Calcul</span><span class="trace-arrow">→</span>
+    <span class="trace-step">Résultat</span>
+  </div>
 </section>
 
 <!-- SOLUTION -->
 <section id="solution">
   <div class="tag reveal">La solution</div>
-  <h2 class="reveal">Un copilot qui travaille <em>pendant</em> que vous dirigez votre entreprise.</h2>
-  <p class="sub reveal">Pas un tableur. Pas un consultant. Un moteur autonome : vos données entrent, vos rapports certifiables sortent.</p>
+  <h2 class="reveal">Un copilote qui travaille <em>pendant</em> que vous dirigez votre entreprise.</h2>
+  <p class="sub reveal">Pas un tableur. Pas un consultant. Un moteur autonome : vos données entrent, vos rapports et analyses sortent — avec l'humain qui garde le contrôle.</p>
   <div class="steps">
-    <div class="step reveal tilt"><div class="glare"></div><div class="inner"><div class="icon">🔗</div><div class="n">01</div><h3>Connexion</h3><p>Verdia se branche sur votre logiciel de comptabilité (Sage, Cegid, QuickBooks, EBP, Indy) et vos factures d'énergie. Aucun changement d'habitude, aucune ressaisie.</p></div></div>
-    <div class="step reveal tilt" style="transition-delay:.12s"><div class="glare"></div><div class="inner"><div class="icon">🧮</div><div class="n">02</div><h3>Calcul</h3><p>Notre moteur, construit sur les facteurs d'émission officiels de l'ADEME, calcule votre empreinte carbone, vos consommations, votre profil social — puis détecte les anomalies tout seul.</p></div></div>
-    <div class="step reveal tilt" style="transition-delay:.24s"><div class="glare"></div><div class="inner"><div class="icon">📄</div><div class="n">03</div><h3>Rapport</h3><p>Rapport CSRD / VSEA prêt à présenter, réponses pré-remplies aux questionnaires de vos clients, plan d'action priorisé. Reconstruit automatiquement chaque année.</p></div></div>
-    <div class="step reveal tilt" style="transition-delay:.36s"><div class="glare"></div><div class="inner"><div class="icon">🤖</div><div class="n">04</div><h3>Copilottage</h3><p>L'IA Verdia vous explique chaque indicateur, répond à vos questions et vous alerte avant les échéances. C'est elle que vous pouvez tester en bas à droite de cet écran.</p></div></div>
+    <div class="step reveal tilt"><div class="glare"></div><div class="inner"><div class="icon">🔗</div><div class="n">01</div><h3>Centralisation</h3><p>Importez vos données comptables et vos factures, ou connectez vos logiciels (Sage, Cegid, QuickBooks, EBP, Indy…). Verdia les lit, les catégorise et détecte les anomalies. Une seule saisie, réutilisée partout.</p></div></div>
+    <div class="step reveal tilt" style="transition-delay:.12s"><div class="glare"></div><div class="inner"><div class="icon">🧮</div><div class="n">02</div><h3>Calcul carbone & ESG</h3><p>Scopes 1, 2 et 3, indicateurs E-S-G, avec des facteurs d'émission et méthodologies reconnues (ADEME, référentiels européens). Chaque calcul est traçable : source, donnée, méthode, résultat.</p></div></div>
+    <div class="step reveal tilt" style="transition-delay:.24s"><div class="glare"></div><div class="inner"><div class="icon">📋</div><div class="n">03</div><h3>Questionnaire Copilot</h3><p>Importez le questionnaire ESG d'un client : Verdia identifie les questions, pré-remplit les réponses depuis vos données, liste ce qui manque et les justificatifs attendus. Vous validez avant envoi.</p></div></div>
+    <div class="step reveal tilt" style="transition-delay:.36s"><div class="glare"></div><div class="inner"><div class="icon">🤖</div><div class="n">04</div><h3>Copilote IA</h3><p>« Quelles données me manquent ? » « Pourquoi mes émissions ont-elles augmenté ? » « Prépare mon bilan. » L'IA répond, explique ses sources et vous alerte. Testez-la en bas à droite de cet écran.</p></div></div>
   </div>
 </section>
 
@@ -319,7 +333,7 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
 <section class="simu" id="simulateur">
   <div class="tag reveal">Aperçu express</div>
   <h2 class="reveal">Estimez votre empreinte en <em>trente secondes.</em></h2>
-  <p class="sub reveal">Version simplifiée de notre moteur. Verdia réalise le calcul complet à partir de vos données réelles, ligne comptable par ligne comptable.</p>
+  <p class="sub reveal">Version simplifiée de notre moteur. Verdia réalise le calcul complet à partir de vos données réelles, ligne par ligne, avec traçabilité des facteurs utilisés.</p>
   <div class="simu-grid">
     <div class="panel reveal">
       <div class="field"><label>Effectif de l'entreprise</label><input type="number" id="fEffectif" value="35" min="1"></div>
@@ -337,21 +351,23 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
 <!-- TARIFS -->
 <section id="tarifs">
   <div class="tag reveal">Tarifs</div>
-  <h2 class="reveal">95&nbsp;% moins cher qu'un <em>cabinet de conseil.</em></h2>
+  <h2 class="reveal">Trois formules pour <em>commencer simplement.</em></h2>
+  <p class="sub reveal">Paiement annuel sécurisé. Engagement raisonnable : la conformité évolue, Verdia s'adapte avec vous. Chaque formule inclut le copilote IA et la traçabilité des données.</p>
   <div class="plans">
-    <div class="plan reveal tilt"><div class="glare"></div><h3>Essentiel</h3>
+    <div class="plan reveal tilt"><div class="glare"></div><h3>Starter</h3>
       <div class="price">990&nbsp;€<small> HT</small></div><div class="per">par an</div>
-      <ul><li>Bilan carbone simplifié</li><li>Réponses aux questionnaires clients</li><li>Copilot IA Verdia inclus</li><li>Mises à jour annuelles</li></ul>
-      <button class="btn" onclick="openChat()">Commencer</button></div>
+      <ul><li>Centralisation des données (import + intégrations de base)</li><li>Bilan carbone simplifié (scopes 1 & 2)</li><li>Copilote IA Verdia inclus</li><li>Réponses aux questionnaires clients simples</li></ul>
+      <button class="btn" onclick="subscribe('starter')">S'abonner</button></div>
     <div class="plan reveal tilt" style="transition-delay:.12s;border-color:rgba(232,199,118,.4)"><div class="glare"></div><div class="badge">Le plus choisi</div>
-      <h3>Pro</h3><div class="price">1 990&nbsp;€<small> HT</small></div><div class="per">par an</div>
-      <ul><li>Rapport CSRD / VSEA complet</li><li>Connecteurs comptabilité & énergie</li><li>Plan d'action priorisé</li><li>Validation par expert ESG</li><li>Support prioritaire</li></ul>
-      <button class="btn solid" onclick="openChat()">Commencer</button></div>
-    <div class="plan reveal tilt" style="transition-delay:.24s"><div class="glare"></div><h3>Premium</h3>
+      <h3>Business</h3><div class="price">1 990&nbsp;€<small> HT</small></div><div class="per">par an</div>
+      <ul><li>Tout Starter +</li><li>Bilan GES complet (scopes 1, 2, 3) et indicateurs E-S-G</li><li>Questionnaire Copilot complet</li><li>Détection des données manquantes & justificatifs</li><li>Rapports & historique de vos évolutions</li></ul>
+      <button class="btn solid" onclick="subscribe('business')">S'abonner</button></div>
+    <div class="plan reveal tilt" style="transition-delay:.24s"><div class="glare"></div><h3>Pro</h3>
       <div class="price">3 990&nbsp;€<small> HT</small></div><div class="per">par an</div>
-      <ul><li>Tout le plan Pro</li><li>Accompagnement expert-comptable certifié</li><li>Attestation de conformité annuelle</li><li>Comparaison sectorielle avancée</li></ul>
-      <button class="btn" onclick="openChat()">Commencer</button></div>
+      <ul><li>Tout Business +</li><li>Accompagnement avec un expert-comptable partenaire</li><li>Rapprochements comptables avancés & contrôles</li><li>Comparaison sectorielle</li><li>Support prioritaire</li></ul>
+      <button class="btn" onclick="subscribe('pro')">S'abonner</button></div>
   </div>
+  <p class="sub reveal" style="margin-top:36px;font-size:.85rem;opacity:.8">Verdia automatise et pilote votre conformité financière et ESG. Lorsque la loi exige l'intervention d'un professionnel habilité (expert-comptable, auditeur), Verdia prépare tout le travail — et votre partenaire valide.</p>
 </section>
 
 <div class="marquee"><div class="marquee-track" id="marquee"></div></div>
@@ -359,23 +375,23 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
 <!-- TÉMOIGNAGES -->
 <section>
   <div class="tag reveal">Ils nous font confiance</div>
-  <h2 class="reveal">Conçus avec <em>des PME,</em> pas contre elles.</h2>
+  <h2 class="reveal">Conçue avec <em>des PME,</em> pas contre elles.</h2>
   <div class="quotes">
-    <div class="quote reveal tilt"><div class="glare"></div><div class="q">« Nous répondions avant au questionnaire ESG de notre plus gros client chaque année, sur Excel, en trois semaines. Verdia l'a pré-rempli en un après-midi. »</div><div class="who"><b>Sophie R.</b> — Dirigeante, industrie plastique (86 salariés)</div></div>
-    <div class="quote reveal tilt" style="transition-delay:.12s"><div class="glare"></div><div class="q">« Mon expert-comptable m'a proposé Verdia. J'ai d'abord douté — aujourd'hui, c'est mon argument numéro un sur les appels d'offres publics. »</div><div class="who"><b>Marc D.</b> — Fondateur, BTP Métallerie (54 salariés)</div></div>
-    <div class="quote reveal tilt" style="transition-delay:.24s"><div class="glare"></div><div class="q">« L'IA nous explique chaque chiffre en langage clair. Pour la première fois, je comprends mon propre bilan carbone. »</div><div class="who"><b>Aïcha L.</b> — DGA, cosmétique responsable (28 salariés)</div></div>
+    <div class="quote reveal tilt"><div class="glare"></div><div class="q">« Nous répondions avant au questionnaire ESG de notre plus gros client chaque année, sur Excel, en trois semaines. Verdia l'a pré-rempli en un après-midi — et on voit la source de chaque chiffre. »</div><div class="who"><b>Sophie R.</b> — Dirigeante, industrie plastique (86 salariés)</div></div>
+    <div class="quote reveal tilt" style="transition-delay:.12s"><div class="glare"></div><div class="q">« Mon expert-comptable m'a proposé Verdia. J'ai d'abord douté — aujourd'hui, mes données sont prêtes avant même que mes clients ne les demandent. »</div><div class="who"><b>Marc D.</b> — Fondateur, BTP Métallerie (54 salariés)</div></div>
+    <div class="quote reveal tilt" style="transition-delay:.24s"><div class="glare"></div><div class="q">« L'IA nous explique chaque chiffre en langage clair, et notre cabinet contrôle ce qu'il faut contrôler. Pour la première fois, je comprends mon propre bilan carbone. »</div><div class="who"><b>Aïcha L.</b> — DGA, cosmétique responsable (28 salariés)</div></div>
   </div>
 </section>
 
 <section class="final">
   <div class="tag reveal" style="justify-content:center">Prêt quand vous l'êtes</div>
-  <h2 class="reveal">Votre premier rapport ESG pourrait être fini <em>avant ce soir.</em></h2>
+  <h2 class="reveal">Vos données centralisées. Votre conformité <em>pilotée.</em></h2>
   <button class="btn solid magnetic reveal" onclick="openChat()">Parler à Verdia maintenant →</button>
 </section>
 
 <footer>
   <div>© 2026 Verdia SAS — Paris, France</div>
-  <div>bonjour@verdia.io · Données hébergées en UE · Conforme RGPD</div>
+  <div>bonjour@verdia.io · Hébergement des données en UE · Approche RGPD by design</div>
 </footer>
 </main>
 
@@ -398,6 +414,32 @@ footer{border-top:1px solid var(--line);padding:50px 7vw;display:flex;justify-co
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
+/* ============================================================
+   CONFIGURATION PAIEMENT (Stripe Payment Links)
+   ------------------------------------------------------------
+   ⚙️ À CONFIGURER PAR TOI (voir instructions livrées) :
+   1. Crée un compte Stripe (dashboard.stripe.com)
+   2. Produits → Payment Links → crée 3 liens (Starter/Business/Pro,
+      paiement annuel récurrent en EUR)
+   3. Colle les 3 URL ci-dessous à la place des placeholders.
+   Aucune clé secrète ici : les Payment Links sont publics par
+   conception (comme une URL de page de paiement). Les secrets
+   (webhooks, API) resteront côté serveur/backend, jamais ici.
+   ============================================================ */
+const PAYMENT_LINKS={
+  starter:"https://buy.stripe.com/REMPLACE_PAR_TON_LIEN_STARTER",
+  business:"https://buy.stripe.com/REMPLACE_PAR_TON_LIEN_BUSINESS",
+  pro:"https://buy.stripe.com/REMPLACE_PAR_TON_LIEN_PRO"
+};
+function subscribe(plan){
+  const url=PAYMENT_LINKS[plan];
+  if(!url||url.includes("REMPLACE_PAR_TON_LIEN")){
+    alert("Le paiement pour cette formule sera bientôt activé.\nEn attendant, écrivez-nous : bonjour@verdia.io");
+  }else{
+    window.location.href=url;
+  }
+}
+
 /* ============================================================
    TITRE HÉRO — sauvegarde du HTML final (avant décryptage)
    ============================================================ */
@@ -590,24 +632,27 @@ if(!isMobile){
 }
 
 /* ============================================================
-   SALLE DES DONNÉES — modules en orbite cliquables
+   SALLE DES DONNÉES — 6 modules en orbite cliquables
    ============================================================ */
 const MODULES=[
-  {icon:"🔗",c:0x34f5a5,r:3.2,t:"Connecteurs",key:"Flux d'entrée",
-   d:"Le module d'entrée : il se branche sur Sage, Cegid, QuickBooks, EBP, Indy, vos banques et vos factures d'énergie. Chaque écriture comptable devient une donnée exploitable — sans jamais être ressaisie.",
-   sv:"< 1 h",sl:"de mise en place initiale"},
-  {icon:"🧮",c:0xe8c776,r:3.9,t:"Moteur carbone",key:"Calcul ADEME",
-   d:"Le cœur de calcul : chaque euro dépensé, chaque kilomètre parcouru et chaque kilowatt-heure consommé est converti en émissions CO₂e via les facteurs officiels de l'ADEME — scopes 1, 2 et 3 inclus.",
-   sv:"12 000+",sl:"facteurs d'émission embarqués"},
-  {icon:"🛡️",c:0x7ad7f0,r:4.6,t:"Garde-fou qualité",key:"Fiabilité",
-   d:"Le module de confiance : il détecte les anomalies, les données manquantes et les incohérences avant qu'un expert ESG ne valide le rapport. Chez Verdia, l'IA propose — l'humain certifie.",
-   sv:"100 %",sl:"des rapports validés par un expert humain"},
-  {icon:"📄",c:0xf09c6a,r:5.3,t:"Générateur de rapports",key:"Sortie conforme",
-   d:"Le module de sortie : il assemble vos données en rapport CSRD / VSEA présentable et pré-remplit les questionnaires de vos clients grands comptes — quel que soit leur format propriétaire.",
-   sv:"6 h",sl:"pour un rapport complet"},
-  {icon:"🤖",c:0xeef4f0,r:6.0,t:"Copilot IA",key:"Verdia, elle-même",
-   d:"C'est moi : je veille en continu. J'explique chaque indicateur en langage clair, j'alerte avant les échéances réglementaires et je vous suggère les actions les plus impactantes pour réduire votre empreinte.",
-   sv:"24/7",sl:"disponible pour chaque dirigeant"}
+  {icon:"🔗",c:0x34f5a5,r:3.2,t:"Hub de données",key:"Centralisation",
+   d:"Le socle : import de factures et d'exports comptables, lecture et extraction automatique des informations, catégorisation, détection d'anomalies. Vos données sont saisies une seule fois — et réutilisées pour tous vos besoins.",
+   sv:"1 seule saisie",sl:"pour tous vos rapports et questionnaires"},
+  {icon:"🧮",c:0xe8c776,r:3.9,t:"Moteur carbone",key:"Bilan GES · Scopes 1-2-3",
+   d:"Le calcul de votre empreinte : scopes 1, 2 et 3 en s'appuyant sur des méthodologies reconnues et des facteurs d'émission publics (ADEME…). Historique, évolutions et détection des données manquantes incluses.",
+   sv:"Traçable",sl:"source → donnée → méthode → calcul → résultat"},
+  {icon:"🌳",c:0x7ad7f0,r:4.6,t:"Module ESG",key:"E · S · G",
+   d:"Vos indicateurs Environnement, Social et Gouvernance : collecte, justificatifs, contrôles, historique. Verdia identifie vos données et obligations applicables — sans jamais promettre une conformité qu'elle ne peut pas garantir juridiquement.",
+   sv:"Pilotée",sl:"votre conformité ESG, en toute transparence"},
+  {icon:"📋",c:0xf09c6a,r:5.3,t:"Questionnaire Copilot",key:"Nouveauté P0",
+   d:"Importez le questionnaire ESG d'un client : Verdia identifie les questions, pré-remplit depuis vos données disponibles, liste ce qui manque et les justificatifs attendus, puis calcule ce qui doit l'être. Vous validez chaque réponse avant envoi.",
+   sv:"Pré-rempli",sl:"réponses sourcées, validées par vous"},
+  {icon:"🛡️",c:0xc792ea,r:6.0,t:"Garde-fou qualité",key:"Fiabilité",
+   d:"Le module de confiance : détection des incohérences, des données manquantes et des valeurs aberrantes avant toute sortie. L'IA propose — l'humain (vous, ou votre expert-comptable partenaire) valide et certifie.",
+   sv:"100 %",sl:"des sorties vérifiables par un humain"},
+  {icon:"🤖",c:0xeef4f0,r:6.7,t:"Copilot IA",key:"Verdia, elle-même",
+   d:"C'est moi : « Quelles données me manquent ? » « Pourquoi mes émissions ont-elles augmenté ? » « Prépare mon bilan. » Je réponds, j'explique mes sources, j'analyse vos nouvelles données — sans jamais en inventer une.",
+   sv:"24/7",sl:"et chaque réponse est sourcée"}
 ];
 let salleActive=false, salleRenderer=null, selectedModule=-1;
 
@@ -623,9 +668,8 @@ function initSalle(){
   holder.appendChild(r2.domElement);
   const sc=new THREE.Scene();
   const cam=new THREE.PerspectiveCamera(50,1,.1,100);
-  cam.position.set(0,3,12);
+  cam.position.set(0,3,13);
 
-  /* noyau : icosaèdre wireframe + halo */
   const core=new THREE.Mesh(new THREE.IcosahedronGeometry(1.25,1),
     new THREE.MeshBasicMaterial({color:0x34f5a5,wireframe:true,transparent:true,opacity:.85}));
   sc.add(core);
@@ -636,8 +680,8 @@ function initSalle(){
   const meshes=[];
   MODULES.forEach((m,i)=>{
     const orbit=new THREE.Group();
-    orbit.rotation.x=.35+i*.14;
-    orbit.rotation.z=-.15+i*.08;
+    orbit.rotation.x=.3+i*.1;
+    orbit.rotation.z=-.15+i*.06;
     const seg=90, rp=[];
     for(let k=0;k<=seg;k++){const a=k/seg*Math.PI*2;rp.push(new THREE.Vector3(Math.cos(a)*m.r,0,Math.sin(a)*m.r));}
     const ring=new THREE.Line(new THREE.BufferGeometry().setFromPoints(rp),
@@ -652,10 +696,9 @@ function initSalle(){
     mesh.add(glow);
     orbit.add(mesh);
     sc.add(orbit);
-    meshes.push({mesh,angle:i*(Math.PI*2/MODULES.length),speed:.22+i*.05,r:m.r,i});
+    meshes.push({mesh,angle:i*(Math.PI*2/MODULES.length),speed:.2+i*.04,r:m.r,i});
   });
 
-  /* raycasting : survol + clic/tap */
   const ray=new THREE.Raycaster(), ptr=new THREE.Vector2();
   let hovered=-1;
   function pick(e,cb){
@@ -671,14 +714,12 @@ function initSalle(){
   r2.domElement.addEventListener('pointermove',e=>pick(e,i=>hovered=i));
   r2.domElement.addEventListener('pointerdown',e=>pick(e,i=>{if(i>=0)selectModule(i)}));
 
-  /* taille */
   function resize(){
     const w=holder.clientWidth,h=holder.clientHeight;
     r2.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix();
   }
   resize();addEventListener('resize',resize);
 
-  /* rendu uniquement si la section est visible */
   new IntersectionObserver(es=>es.forEach(e=>salleActive=e.isIntersecting),{threshold:.05})
     .observe(document.getElementById('salle'));
 
@@ -703,7 +744,6 @@ function initSalle(){
   selectModule(0);
 }
 
-/* panneau d'information + onglets */
 function selectModule(i){
   selectedModule=i;
   const m=MODULES[i];
@@ -746,9 +786,9 @@ function calcSimu(){
       :'Potentiel de réduction significatif détecté — un plan d\'action Verdia prioriserait vos déplacements.';
     res.innerHTML=`
       <div class="co2">${total.toFixed(1)} <small>t CO₂e / an</small></div>
-      <p>soit environ <b style="color:var(--paper)">${per.toFixed(1)} tonnes par salarié</b> — estimation express basée sur les facteurs d'émission ADEME (électricité, déplacements, poste professionnel).</p>
+      <p>soit environ <b style="color:var(--paper)">${per.toFixed(1)} tonnes par salarié</b> — estimation express basée sur des facteurs d'émission publics (électricité, déplacements, poste professionnel).</p>
       <div class="verdict">${verdict}</div>
-      <p style="font-size:.78rem;margin-top:16px;opacity:.75">Version simplifiée : Verdia analyse vos écritures comptables réelles pour un bilan complet couvrant les scopes 1, 2 et 3.</p>`;
+      <p style="font-size:.78rem;margin-top:16px;opacity:.75">Version simplifiée. Verdia réalise le calcul complet (scopes 1, 2 et 3) à partir de vos données réelles — chaque facteur utilisé est traçable.</p>`;
   },1400);
 }
 
@@ -765,37 +805,37 @@ const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 
 const KB=[
   {re:/(bonjour|salut|hello|bonsoir|hey|coucou)/,
-   a:"Bonjour ! 👋 Je suis Verdia, l'IA qui automatise la conformité ESG des PME. Je peux vous parler de nos offres, de la CSRD, de votre bilan carbone, de la sécurité de vos données… Que souhaitez-vous savoir ?"},
-  {re:/(salle|module|orbite|explore)/,
-   a:"Ah, vous avez vu la **Salle des données** ! 🛸 C'est la démonstration visuelle de notre moteur : chaque module en orbite correspond à une brique réelle de Verdia (connecteurs, calcul carbone, garde-fou qualité, générateur de rapports… et moi-même, le copilot).\n\nTouchez un module dans la section « La salle des données » de cette page pour découvrir son rôle détaillé — ou appuyez sur les boutons sous la visualisation."},
+   a:"Bonjour ! 👋 Je suis Verdia, le copilote IA de votre conformité financière et ESG. Comptabilité, carbone, ESG, questionnaires clients… posez-moi vos questions."},
+  {re:/(questionnaire|copilot.*question|repondre.*client|donneur.?ordre)/,
+   a:"Notre **Questionnaire Copilot** 📋 fonctionne ainsi :\n\n1. Vous importez le questionnaire ESG reçu d'un client ou donneur d'ordre (PDF, tableur…)\n2. J'identifie les questions et je repère les **données déjà disponibles** chez vous\n3. Je liste les **données manquantes** et les justificatifs attendus\n4. Je pré-remplis les réponses à partir de vos données\n5. **Vous validez** — chaque réponse affiche sa source, modifiable avant envoi\n\nL'IA ne remplace jamais votre validation finale."},
+  {re:/(csrd|esrs|vsme|beges|directive|reglement|obligation)/,
+   a:"Un résumé fiable du paysage réglementaire :\n\n• **CSRD** : directive européenne de reporting de durabilité. Elle vise en priorité les **grandes entreprises** — une PME n'y est pas automatiquement soumise (sauf cas particuliers, comme les PME cotées).\n• **ESRS** : les normes de reporting détaillées de la CSRD, applicables aux entreprises concernées.\n• **VSME** : le **référentiel volontaire européen pour les PME** — la grille que vos clients grands comptes vous demanderont le plus souvent.\n• **BEGES** : la méthodologie française de mesure des émissions de gaz à effet de serre.\n\nEt surtout : même sans obligation directe, vos **donneurs d'ordre** peuvent exiger vos données ESG. C'est l'effet domino — et c'est là que Verdia vous fait gagner du temps."},
+  {re:/(carbone|co2|empreinte|bilan|ges|emission)/,
+   a:"Notre moteur calcule votre empreinte carbone sur les **scopes 1, 2 et 3**, en s'appuyant sur des méthodologies reconnues et des facteurs d'émission publics (ADEME…).\n\nChaque calcul est **traçable** : source → donnée → méthode → calcul → résultat. Historique, évolutions et alertes sur les données manquantes inclus.\n\n💡 Testez la version simplifiée dans le simulateur de cette page (« Aperçu express »)."},
   {re:/(econo|gain|rentab|gagner)/,
-   a:"L'économie se calcule vite :\n\n• Un rapport CSRD en cabinet de conseil : **10 000 à 20 000 €**\n• Le même rapport avec Verdia : **à partir de 990 €**\n• Votre temps : 6 semaines → 6 heures, soit **95 % de temps libéré**\n\nSans compter les appels d'offres que vous pouvez désormais remporter grâce à vos données ESG. 📈"},
-  {re:/(prix|tarif|combien|cout|co[ûu]t|abonnement|offre)/,
-   a:"Voici nos trois formules annuelles (HT) :\n\n• **Essentiel — 990 €** : bilan carbone simplifié + réponses aux questionnaires clients\n• **Pro — 1 990 €** (la plus choisie) : rapport CSRD/VSEA complet, connecteurs comptabilité, validation par expert ESG\n• **Premium — 3 990 €** : tout Pro + accompagnement par expert-comptable certifié et attestation de conformité\n\nÀ titre de comparaison : un cabinet de conseil facture le même travail 10 000 à 20 000 €. Souhaitez-vous une estimation pour votre entreprise ?"},
-  {re:/(csrd|directive|reglement|obligation|vsea)/,
-   a:"La **CSRD** (Corporate Sustainability Reporting Directive) est la directive européenne qui impose un reporting de durabilité. En 2026, ce sont surtout les **grands donneurs d'ordre** qui la subissent — et ils la répercutent sur leurs fournisseurs PME via des questionnaires ESG. Résultat : même sans être juridiquement soumise, une PME doit fournir ses données pour **conserver ses contrats**. C'est exactement le problème que Verdia résout."},
-  {re:/(carbone|co2|empreinte|bilan|emission)/,
-   a:"Notre moteur calcule votre empreinte carbone avec les **facteurs d'émission officiels de l'ADEME** (base empreinte). Concrètement : nous analysons vos écritures comptables, vos factures d'énergie et vos déplacements pour couvrir les scopes 1, 2 et 3.\n\n💡 Vous pouvez tester une **version simplifiée** de ce calcul dans le simulateur de cette page — cherchez la section « Aperçu express ». Sinon, je peux lancer une démo complète avec vous."},
-  {re:/(demo|demonstration|essai|teste?r|decouvrir)/,
-   a:"Avec plaisir ! Trois options :\n\n1. **Salle des données** : explorez les modules de notre moteur en 3D, sur cette page\n2. **Simulateur express** (30 secondes) : section « Aperçu express », entrez vos chiffres\n3. **Démo personnalisée** (30 min) : je planifie un rendez-vous avec notre équipe qui connectera vos données en direct\n\nLaissez-moi votre email et je m'occupe de tout. 🙂"},
+   a:"L'économie typique comparée à un cabinet de conseil :\n\n• Reporting ESG + bilan carbone en conseil : **10 000 à 20 000 €**\n• Avec Verdia : **à partir de 990 €/an**\n• Votre temps : plusieurs semaines → quelques heures\n\nCe sont des ordres de grandeur observés sur le marché — la mieux placée pour confirmer votre cas, c'est une démo avec vos données. 🙂"},
+  {re:/(prix|tarif|combien|cout|co[ûu]t|abonnement|offre|formule)/,
+   a:"Nos trois formules annuelles (HT) :\n\n• **Starter — 990 €** : centralisation des données, bilan carbone simplifié (scopes 1-2), questionnaires clients simples\n• **Business — 1 990 €** (la plus choisie) : bilan GES complet (scopes 1-2-3), indicateurs E-S-G, Questionnaire Copilot, données manquantes & justificatifs\n• **Pro — 3 990 €** : tout Business + accompagnement par un expert-comptable partenaire et contrôles avancés\n\nLe bouton « S'abonner » de chaque formule dirige vers un paiement sécurisé."},
+  {re:/(compta|sage|cegid|quickbook|ebp|indy|connexion|connect|integration|logiciel|facture|ecriture|rapprochement)/,
+   a:"Côté comptabilité, Verdia :\n\n• Importe vos données et **lit vos factures** (extraction automatique)\n• Catégorise, propose des écritures et effectue des **rapprochements**\n• Détecte les anomalies et prépare certaines opérations\n• Se connecte à Sage, Cegid, QuickBooks, EBP, Indy lorsque les intégrations existent\n\n⚠️ Important : Verdia ne **remplace pas juridiquement** votre expert-comptable. Il prépare le travail — et un expert-comptable partenaire peut contrôler, corriger ou valider quand c'est nécessaire."},
+  {re:/(expert.?comptable|partenaire|cabinet|auditeur|audit)/,
+   a:"Nous avons un modèle **partenarial** avec les cabinets comptables :\n\n• Ils recommandent Verdia à leurs clients PME (commission de 20 % sur les abonnements)\n• Ils conservent leur rôle de confiance : contrôle, correction, validation des éléments comptables et des sorties sensibles\n\nPour l'audit ou les missions légales exigeant un professionnel habilité, Verdia prépare tout — mais ne se substitue jamais au professionnel."},
   {re:/(securite|rgpd|donnee|confiden|heberg)/,
-   a:"Excellente question — c'est un point que nos clients dirigeants vérifient en premier. Réponses claires :\n\n• Données **hébergées exclusivement en Union européenne**\n• **Chiffrement** au repos et en transit\n• Aucune donnée revendue ni utilisée pour entraîner des modèles tiers\n• **DPA** (accord de traitement) signé avec chaque client — conforme RGPD\n\nVous restez propriétaire de vos données, en toutes circonstances."},
-  {re:/(compta|sage|cegid|quickbook|ebp|indy|connexion|connect|integration|logiciel)/,
-   a:"Verdia se connecte à votre écosystème existant, sans aucune ressaisie :\n\n• Logiciels comptables : Sage, Cegid, QuickBooks, EBP, Indy\n• Banques : via agrégateurs sécurisés (type Bridge, Powens)\n• Énergie : upload simple de vos factures EDF ou Engie en PDF\n\nLa mise en place initiale prend **moins d'une heure**, et mes collègues humains vous accompagnent gratuitement pendant celle-ci."},
-  {re:/(expert.?comptable|partenaire|cabinet)/,
-   a:"Nos meilleurs ambassadeurs sont les **experts-comptables** : ils recommandent Verdia à leurs clients PME et perçoivent 20 % de commission annuelle sur chaque contrat. C'est un partenariat gagnant-gagnant : leur cabinet valorise son offre, et la PME obtient un tarif préférentiel. Vous êtes expert-comptable ? Je peux organiser un échange avec notre équipe partenariats."},
+   a:"Notre approche sécurité :\n\n• Données **hébergées en Union européenne**\n• **Séparation stricte des données entre entreprises clientes**\n• Chiffrement au repos et en transit, secrets gérés côté serveur\n• Traçabilité des accès et des opérations\n• Conception **RGPD by design** (droit d'accès, d'export et de suppression prévus)\n\nNous appliquons les mesures avec rigueur — et nous restons transparents sur ce qui est en place à chaque étape."},
+  {re:/(demo|demonstration|essai|teste?r|decouvrir)/,
+   a:"Avec plaisir ! Trois options :\n\n1. **La plateforme en 3D** : section « La plateforme » de cette page — découvrez les 6 modules\n2. **Simulateur express** (30 s) : section « Aperçu express »\n3. **Démo personnalisée** (30 min) : un échange avec notre équipe sur vos données réelles\n\nLaissez-moi votre email et je m'occupe de tout. 🙂"},
   {re:/(temps|delai|long|rapide|heure|semaine)/,
-   a:"Voici les durées typiques constatées chez nos clients :\n\n• **Mise en place initiale** : moins d'une heure\n• **Premier rapport complet** : 6 heures ouvrées (contre 6 semaines en manuel)\n• **Mises à jour annuelles** : automatiques — vous ne faites que valider\n\nC'est 95 % de temps gagné par rapport à la méthode traditionnelle. 🚀"},
+   a:"Ordres de grandeur constatés chez nos premiers utilisateurs :\n\n• **Mise en place** : moins d'une journée pour l'import initial\n• **Premier questionnaire client pré-rempli** : quelques heures après l'import de vos données\n• **Mises à jour** : les nouvelles données enrichissent tout, sans ressaisie\n\nLa promesse centrale de Verdia : **saisie unique, réutilisation partout**. 🚀"},
   {re:/(concurrence|concurrent|differen|pourquoi vous|unique)/,
-   a:"Très bonne question — voici pourquoi Verdia est différent :\n\n• Les **grands éditeurs** (type SAP, Diligent) visent les grands groupes : trop chers et complexes pour une PME\n• Les **consultants** font le travail, mais à 10 000 € et à refaire chaque année\n• Les **petits outils** ne font qu'un fragment (bilan carbone seul, questionnaire seul)\n\nVerdia est le **seul flux complet automatisé** pensé pour les PME : de la comptabilité brute jusqu'au rapport certifiable. Et je suis là, incluse dans l'abonnement, pour tout vous expliquer."},
+   a:"Verdia se distingue par trois choses :\n\n• **Un seul espace** : comptabilité + carbone + ESG + IA ensemble, plutôt que 4 outils séparés\n• **Saisie unique** : les données sont centralisées une fois et réutilisées pour tous vos besoins (rapports, questionnaires, analyses)\n• **Traçabilité radicale** : chaque donnée produite est sourcée et vérifiable — l'IA propose, l'humain valide\n\nEt le modèle partenarial avec les experts-comptables, plutôt qu'une concurrence avec eux."},
   {re:/(qui etes.?vous|presente|verdia|start.?up|entreprise)/,
-   a:"Je suis **Verdia**, start-up française née en 2026 d'un constat simple : les PME paient le prix fort de la transition réglementaire européenne, sans en avoir les moyens. Notre mission est de rendre la conformité ESG **accessible, automatique et — osons le mot — agréable**.\n\nJe suis l'IA copilote intégrée à chaque offre : je réponds aux dirigeants 24h/24, j'explique chaque indicateur et je déclenche des alertes avant les échéances."},
+   a:"Je suis **Verdia**, start-up française. Notre conviction : les PME passent trop de temps à produire les mêmes données pour des besoins différents — comptabilité, carbone, questionnaire client, reporting.\n\nNotre solution : **le copilote IA qui centralise vos données une fois et les réutilise partout**. Je suis incluse dans chaque formule : je réponds à vos questions, j'explique mes sources — et je n'invente jamais une donnée."},
   {re:/(merci|super|parfait|genial|top|cool)/,
-   a:"Avec grand plaisir ! 🌿 N'hésitez pas si vous avez d'autres questions — ou si vous souhaitez lancer votre premier rapport. On dit toujours chez Verdia : votre conformité ESG pourrait être terminée avant ce soir."},
+   a:"Avec grand plaisir ! 🌿 N'hésitez pas pour toute autre question — ou pour lancer votre première centralisation de données."},
   {re:/(appeler|tel|telephone|contact|rendez.?vous|rdv|humain)/,
-   a:"Bien sûr — vous parlez à un humain en moins de 24 h :\n\n📧 **bonjour@verdia.io**\n📞 Lun–ven, 9h–18h\n\nOu laissez-moi vos nom et email ici : je transmets immédiatement à l'équipe, qui vous recontactera. En attendant, je reste à votre disposition !"}
+   a:"Bien sûr — un humain vous répond sous 24 h ouvrées :\n\n📧 **bonjour@verdia.io**\n📞 Lun–ven, 9h–18h\n\nOu laissez-moi vos nom et email ici : je transmets à l'équipe immédiatement."}
 ];
-const FALLBACK="Intéressante question ! Je peux surtout vous renseigner sur : nos **tarifs**, la **CSRD**, le **bilan carbone**, la **salle des données**, la **sécurité des données**, nos **intégrations comptables**, les **délais**, la **démo**, ou parler à un **humain**. Que souhaitez-vous explorer ?";
+const FALLBACK="Intéressante question ! Je peux surtout vous renseigner sur : nos **tarifs**, le **Questionnaire Copilot**, le **bilan carbone**, la **réglementation (CSRD/VSME/ESRS/BEGES)**, la **comptabilité**, la **sécurité**, la **démo**, ou parler à un **humain**. Que souhaitez-vous explorer ?";
 
 function md(text){
   return text.replace(/&/g,'&amp;').replace(/</g,'&lt;')
@@ -823,9 +863,9 @@ function sendMsg(){
 chatInput.addEventListener('keydown',e=>{if(e.key==='Enter')sendMsg()});
 function initializeChat(){
   chatInit=true;
-  const welcome="Bonjour ! 👋 Je suis **Verdia**, l'IA copilote de votre conformité ESG.\n\nJe réponds à toutes vos questions sur vos obligations, notre solution, nos tarifs — et je peux même estimer votre empreinte carbone. Que puis-je faire pour vous ?";
+  const welcome="Bonjour ! 👋 Je suis **Verdia**, le copilote IA de votre conformité financière et ESG.\n\nComptabilité, carbone, ESG, questionnaires clients — posez-moi vos questions. Règle de la maison : je ne concasse jamais une donnée sans vous montrer sa source. 🙂";
   setTimeout(()=>addMsg(welcome,'bot'),400);
-  ['Combien ça coûte ?','C\'est quoi la CSRD ?','La salle des données ?','Estime mon bilan carbone','Parler à un humain'].forEach(label=>{
+  ['Combien ça coûte ?','Le Questionnaire Copilot ?','C\'est quoi la CSRD pour une PME ?','Estime mon bilan carbone','Parler à un humain'].forEach(label=>{
     const c=document.createElement('button');c.className='chip';c.textContent=label;
     c.onclick=()=>{if(busy)return;addMsg(label,'user');reply(label)};
     chipsEl.appendChild(c);
